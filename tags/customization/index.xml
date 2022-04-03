@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>customization on Harry Blogs</title>
+    <link>https://harishk501.github.io/tags/customization/</link>
+    <description>Recent content in customization on Harry Blogs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 03 Nov 2021 00:29:50 +0530</lastBuildDate><atom:link href="https://harishk501.github.io/tags/customization/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Remap Keys in Ubuntu [20.04]</title>
+      <link>https://harishk501.github.io/posts/ubuntu/remap-keys/</link>
+      <pubDate>Wed, 03 Nov 2021 00:29:50 +0530</pubDate>
+      
+      <guid>https://harishk501.github.io/posts/ubuntu/remap-keys/</guid>
+      <description>Open Terminal using Ctrl + Alt + T or from the app launcher Navigate to the directory /usr/share/X11/xkb/symbols  cd /usr/share/X11/xkb/symbols Edit the file pc as administrator/root user</description>
+    </item>
+    
+  </channel>
+</rss>
