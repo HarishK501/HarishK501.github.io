@@ -1,4 +1,4 @@
-<!doctype html><html lang=en dir=ltr class=scroll-smooth data-default-appearance=light data-auto-appearance=true><head>
+<!doctype html><html lang=en dir=ltr class=scroll-smooth data-default-appearance=light data-auto-appearance=false><head>
 <meta charset=utf-8>
 <meta http-equiv=content-language content="en">
 <meta name=viewport content="width=device-width,initial-scale=1">
@@ -9,7 +9,7 @@
 <link rel=preconnect href=https://fonts.googleapis.com>
 <link rel=preconnect href=https://fonts.gstatic.com crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap" rel=stylesheet>
-<link type=text/css rel=stylesheet href=https://harishk501.github.io/css/main.bundle.min.6bb202a12c73589cfd8034ddab08bf57d711455eb3ca3be0f3b8f1d14ba86d6ace4ce4667d62e270388ffbb50390a542229e45c9fbb424a989d20604f3c2a9ef.css integrity="sha512-a7ICoSxzWJz9gDTdqwi/V9cRRV6zyjvg87jx0UuobWrOTORmfWLicDiP+7UDkKVCIp5Fyfu0JKmJ0gYE88Kp7w==">
+<link type=text/css rel=stylesheet href=https://harishk501.github.io/css/main.bundle.min.2a295a264cf342cae623412068ad72967445fdf4f06a35904e693c383492e65b097d08211f6fa2754c9edcbd154318465e5482c50a3b389a88424a5f21b6f236.css integrity="sha512-KilaJkzzQsrmI0EgaK1ylnRF/fTwajWQTmk8ODSS5lsJfQghH2+idUye3L0VQxhGXlSCxQo7OJqIQkpfIbbyNg==">
 <script type=text/javascript src=https://harishk501.github.io/js/appearance.min.4df8309499991be53c71b2b39ba0f5d5e77ea7d411d0710ce48c24218e7cc24ded28f19e85838fdc56db2306195cb001f049f577be0cf0ffb2dd6e2037ede1b9.js integrity="sha512-TfgwlJmZG+U8cbKzm6D11ed+p9QR0HEM5IwkIY58wk3tKPGehYOP3FbbIwYZXLAB8En1d74M8P+y3W4gN+3huQ=="></script>
 <script defer type=text/javascript id=script-bundle src=https://harishk501.github.io/js/main.bundle.min.238e7ce9c541b4e7abb5781ad8e736e849e74890fcb8a26e73ea1845f573b3a0cf91418b20ac4401bdbb57d9c6c009d8f6ec50dad6d44b48f3936aea0f95c391.js integrity="sha512-I4586cVBtOertXga2Oc26EnnSJD8uKJuc+oYRfVzs6DPkUGLIKxEAb27V9nGwAnY9uxQ2tbUS0jzk2rqD5XDkQ==" data-copy=Copy data-copied=Copied></script>
 <link rel=apple-touch-icon sizes=180x180 href=https://harishk501.github.io/apple-touch-icon.png>
@@ -40,19 +40,19 @@
 </div><header class="flex justify-between py-6 font-semibold sm:items-center sm:py-10 text-neutral-900 dark:text-neutral">
 <div>
 <a href=https://harishk501.github.io/>
-<img src=https://harishk501.github.io/img/logo_50x50.png width=50 height=50 class="brand-img max-w-[10rem] max-h-[10rem] object-scale-down object-left" alt="Harish K">
+<img id=brand-img src=https://harishk501.github.io/img/logo_50x50.png width=50 height=50 class="max-w-[10rem] max-h-[10rem] object-scale-down object-left" alt="Harish K">
 </a>
 </div>
 <nav class="navbar navbar-expand-lg">
 <ul class="flex flex-col list-none sm:flex-row">
 <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
-<a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href=https://harishk501.github.io/posts/ title=Posts>posts</a>
+<a class=hover-underline-animation href=https://harishk501.github.io/posts/ title=Posts>posts</a>
 </li>
 <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
-<a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href=https://harishk501.github.io/topics/ title=Topics>topics</a>
+<a class=hover-underline-animation href=https://harishk501.github.io/topics/ title=Topics>topics</a>
 </li>
 <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
-<a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href=https://harishk501.github.io/tags/ title=Tags>tags</a>
+<a class=hover-underline-animation href=https://harishk501.github.io/tags/ title=Tags>tags</a>
 </li>
 <li class="ltr:text-right rtl:text-left ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
 <button id=appearance-switcher class="hover:text-primary-600 dark:hover:text-primary-400" type=button title="Toggle dark mode">
@@ -132,23 +132,23 @@ Harish K
 </div>
 <div class="text-2xl sm:text-lg">
 <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
-<a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href=mailto:harishcse18501@gmail.com target=_blank aria-label=Email rel="me noopener noreferrer">
+<a class="home-icons px-1 hover:text-primary-700 dark:hover:text-primary-400" href=mailto:harishcse18501@gmail.com target=_blank aria-label=Email rel="me noopener noreferrer">
 <span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
 </span>
 </a>
-<a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://github.com/harishk501 target=_blank aria-label=Github rel="me noopener noreferrer">
+<a class="home-icons px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://github.com/harishk501 target=_blank aria-label=Github rel="me noopener noreferrer">
 <span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg>
 </span>
 </a>
-<a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://instagram.com/harishk501 target=_blank aria-label=Instagram rel="me noopener noreferrer">
+<a class="home-icons px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://instagram.com/harishk501 target=_blank aria-label=Instagram rel="me noopener noreferrer">
 <span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentcolor" d="M224.1 141c-63.6.0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1.0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9.0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9.0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9.0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9.0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8.0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
 </span>
 </a>
-<a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://linkedin.com/in/harishk501 target=_blank aria-label=Linkedin rel="me noopener noreferrer">
+<a class="home-icons px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://linkedin.com/in/harishk501 target=_blank aria-label=Linkedin rel="me noopener noreferrer">
 <span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentcolor" d="M416 32H31.9C14.3 32 0 46.5.0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6.0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3.0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2.0 38.5 17.3 38.5 38.5.0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6.0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2.0 79.7 44.3 79.7 101.9V416z"/></svg>
 </span>
 </a>
-<a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://twitter.com/harishk501 target=_blank aria-label=Twitter rel="me noopener noreferrer">
+<a class="home-icons px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://twitter.com/harishk501 target=_blank aria-label=Twitter rel="me noopener noreferrer">
 <span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg>
 </span>
 </a>

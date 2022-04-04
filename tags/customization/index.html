@@ -1,4 +1,4 @@
-<!doctype html><html lang=en dir=ltr class=scroll-smooth data-default-appearance=light data-auto-appearance=true><head>
+<!doctype html><html lang=en dir=ltr class=scroll-smooth data-default-appearance=light data-auto-appearance=false><head>
 <meta charset=utf-8>
 <meta http-equiv=content-language content="en">
 <meta name=viewport content="width=device-width,initial-scale=1">
@@ -10,7 +10,7 @@
 <link rel=preconnect href=https://fonts.googleapis.com>
 <link rel=preconnect href=https://fonts.gstatic.com crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap" rel=stylesheet>
-<link type=text/css rel=stylesheet href=https://harishk501.github.io/css/main.bundle.min.6bb202a12c73589cfd8034ddab08bf57d711455eb3ca3be0f3b8f1d14ba86d6ace4ce4667d62e270388ffbb50390a542229e45c9fbb424a989d20604f3c2a9ef.css integrity="sha512-a7ICoSxzWJz9gDTdqwi/V9cRRV6zyjvg87jx0UuobWrOTORmfWLicDiP+7UDkKVCIp5Fyfu0JKmJ0gYE88Kp7w==">
+<link type=text/css rel=stylesheet href=https://harishk501.github.io/css/main.bundle.min.2a295a264cf342cae623412068ad72967445fdf4f06a35904e693c383492e65b097d08211f6fa2754c9edcbd154318465e5482c50a3b389a88424a5f21b6f236.css integrity="sha512-KilaJkzzQsrmI0EgaK1ylnRF/fTwajWQTmk8ODSS5lsJfQghH2+idUye3L0VQxhGXlSCxQo7OJqIQkpfIbbyNg==">
 <script type=text/javascript src=https://harishk501.github.io/js/appearance.min.4df8309499991be53c71b2b39ba0f5d5e77ea7d411d0710ce48c24218e7cc24ded28f19e85838fdc56db2306195cb001f049f577be0cf0ffb2dd6e2037ede1b9.js integrity="sha512-TfgwlJmZG+U8cbKzm6D11ed+p9QR0HEM5IwkIY58wk3tKPGehYOP3FbbIwYZXLAB8En1d74M8P+y3W4gN+3huQ=="></script>
 <script defer type=text/javascript id=script-bundle src=https://harishk501.github.io/js/main.bundle.min.238e7ce9c541b4e7abb5781ad8e736e849e74890fcb8a26e73ea1845f573b3a0cf91418b20ac4401bdbb57d9c6c009d8f6ec50dad6d44b48f3936aea0f95c391.js integrity="sha512-I4586cVBtOertXga2Oc26EnnSJD8uKJuc+oYRfVzs6DPkUGLIKxEAb27V9nGwAnY9uxQ2tbUS0jzk2rqD5XDkQ==" data-copy=Copy data-copied=Copied></script>
 <link rel=apple-touch-icon sizes=180x180 href=https://harishk501.github.io/apple-touch-icon.png>
@@ -38,19 +38,19 @@
 </div><header class="flex justify-between py-6 font-semibold sm:items-center sm:py-10 text-neutral-900 dark:text-neutral">
 <div>
 <a href=https://harishk501.github.io/>
-<img src=https://harishk501.github.io/img/logo_50x50.png width=50 height=50 class="brand-img max-w-[10rem] max-h-[10rem] object-scale-down object-left" alt="Harish K">
+<img id=brand-img src=https://harishk501.github.io/img/logo_50x50.png width=50 height=50 class="max-w-[10rem] max-h-[10rem] object-scale-down object-left" alt="Harish K">
 </a>
 </div>
 <nav class="navbar navbar-expand-lg">
 <ul class="flex flex-col list-none sm:flex-row">
 <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
-<a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href=https://harishk501.github.io/posts/ title=Posts>posts</a>
+<a class=hover-underline-animation href=https://harishk501.github.io/posts/ title=Posts>posts</a>
 </li>
 <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
-<a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href=https://harishk501.github.io/topics/ title=Topics>topics</a>
+<a class=hover-underline-animation href=https://harishk501.github.io/topics/ title=Topics>topics</a>
 </li>
 <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
-<a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href=https://harishk501.github.io/tags/ title=Tags>tags</a>
+<a class=hover-underline-animation href=https://harishk501.github.io/tags/ title=Tags>tags</a>
 </li>
 <li class="ltr:text-right rtl:text-left ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
 <button id=appearance-switcher class="hover:text-primary-600 dark:hover:text-primary-400" type=button title="Toggle dark mode">
@@ -94,7 +94,7 @@
 </h2>
 <article>
 <h3 class="flex items-center mt-6 text-xl font-semibold">
-<a class="decoration-primary-500 hover:underline hover:underline-offset-2 text-neutral-800 dark:text-neutral" href=https://harishk501.github.io/posts/salesforce/minimal-list-view/>Minimal List View using Aura Components</a>
+<a class="hover-underline-animation text-neutral-800 dark:text-neutral" href=https://harishk501.github.io/posts/salesforce/minimal-list-view/>Minimal List View using Aura Components</a>
 </h3>
 <div class="text-sm text-neutral-500 dark:text-neutral-400">
 <div class="flex flex-row flex-wrap items-center">
@@ -113,7 +113,7 @@
 </h2>
 <article>
 <h3 class="flex items-center mt-6 text-xl font-semibold">
-<a class="decoration-primary-500 hover:underline hover:underline-offset-2 text-neutral-800 dark:text-neutral" href=https://harishk501.github.io/posts/ubuntu/remap-keys/>Remap Keys in Ubuntu [20.04]</a>
+<a class="hover-underline-animation text-neutral-800 dark:text-neutral" href=https://harishk501.github.io/posts/ubuntu/remap-keys/>Remap Keys in Ubuntu [20.04]</a>
 </h3>
 <div class="text-sm text-neutral-500 dark:text-neutral-400">
 <div class="flex flex-row flex-wrap items-center">
