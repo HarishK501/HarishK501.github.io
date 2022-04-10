@@ -46,13 +46,10 @@
 <nav class=navbar>
 <ul class="flex flex-col list-none sm:flex-row">
 <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+<a class=hover-underline-animation href=https://harishk501.github.io/about/ title=About>about</a>
+</li>
+<li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
 <a class=hover-underline-animation href=https://harishk501.github.io/posts/ title=Posts>posts</a>
-</li>
-<li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
-<a class=hover-underline-animation href=https://harishk501.github.io/topics/ title=Topics>topics</a>
-</li>
-<li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
-<a class=hover-underline-animation href=https://harishk501.github.io/tags/ title=Tags>tags</a>
 </li>
 <li class="ltr:text-right rtl:text-left ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
 <button id=appearance-switcher class="hover:text-primary-600 dark:hover:text-primary-400" type=button title="Toggle dark mode">
@@ -76,33 +73,24 @@
 </nav>
 </header>
 <main id=main-content class="relative grow">
+<article class="max-w-full prose dark:prose-invert">
 <header>
-<ol class="text-sm text-neutral-500 dark:text-neutral-400">
-<li class="inline hidden">
-<a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href=https://harishk501.github.io/>Harish K</a><span class="px-1 text-primary-500">/</span>
-</li>
-<li class="inline hidden">
-<a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href=https://harishk501.github.io/posts/>Posts</a><span class="px-1 text-primary-500">/</span>
-</li>
-</ol>
-<h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">Posts</h1>
+<h1>Posts</h1>
 </header>
-<section class="flex flex-col max-w-full prose lg:flex-row dark:prose-invert mt-0">
-<div class="min-w-0 min-h-0 max-w-prose">
-<style>.taxonomy-links-div{display:block;position:relative;top:10px}.taxonomy-links-div .links{display:inline-block;font-size:1.25rem;line-height:1.75rem;font-weight:500;width:200px}.taxonomy-links-div a{color:var(--tw-prose-bold);text-decoration:none}.taxonomy-links-div a:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline;-webkit-text-decoration-color:rgb(var(--color-primary-500));text-decoration-color:rgb(var(--color-primary-500));text-decoration-thickness:2px;text-underline-offset:2px;background-color:transparent;color:var(--tw-prose-bold)}</style>
+<section>
+<style>.taxonomy-links-div{display:block;position:relative;top:10px;padding:5px}.taxonomy-links-div .links{display:inline-block;font-size:1.25rem;line-height:1.75rem;font-weight:500;width:200px}.taxonomy-links-div a{color:var(--tw-prose-bold);text-decoration:none}.taxonomy-links-div a:hover{background-color:transparent;color:var(--tw-prose-bold)}i{color:rgb(var(--color-primary-400))}</style>
 <div class=taxonomy-links-div>
 <div class=links>
-<a href=https://harishk501.github.io/topics title="Find topics of my posts">Topics</a>
+<a href=https://harishk501.github.io/topics title="Find topics of my posts"><i class="fa-solid fa-bars-progress"></i> Topics</a>
 </div>
-<div class=links><a href=https://harishk501.github.io/tags title="Find posts by tags">Tags</a></div>
+<div class=links><a href=https://harishk501.github.io/tags title="Find posts by tags"><i class="fa-solid fa-tags"></i> Tags</a></div>
 </div>
+<hr style="margin:2em 0">
 <script>$("a[title|='Posts']").removeClass("hover-underline-animation"),$("a[title|='Posts']").addClass("active-nav-item")</script>
-</div>
 </section>
+</article>
 <section>
-<h2 style="width:40%;border-bottom:1px grey dashed" class="mt-12 text-2xl font-bold first:mt-8 text-neutral-700 dark:text-neutral-300">
-2022
-</h2>
+<h2 class="mt-8 text-2xl font-extrabold">Recent</h2>
 <article>
 <h3 class="flex items-center mt-6 text-xl font-semibold">
 <a class="hover-underline-animation text-neutral-800 dark:text-neutral" href=https://harishk501.github.io/posts/salesforce/minimal-list-view/>Minimal List View using Aura Components</a>
@@ -119,9 +107,6 @@
 </div>
 </div>
 </article>
-<h2 style="width:40%;border-bottom:1px grey dashed" class="mt-12 text-2xl font-bold first:mt-8 text-neutral-700 dark:text-neutral-300">
-2021
-</h2>
 <article>
 <h3 class="flex items-center mt-6 text-xl font-semibold">
 <a class="hover-underline-animation text-neutral-800 dark:text-neutral" href=https://harishk501.github.io/posts/react/deploy-gh-pages/>Deploying React App to GitHub Pages</a>
