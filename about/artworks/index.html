@@ -12,7 +12,7 @@
 <link rel=preconnect href=https://fonts.googleapis.com>
 <link rel=preconnect href=https://fonts.gstatic.com crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Londrina+Outline&family=Londrina+Shadow&display=swap" rel=stylesheet>
-<link type=text/css rel=stylesheet href=https://harishk501.github.io/css/main.bundle.min.713b0fc999ce95dcf9d75fb187110eb08718da4afdb9fd80ba2ef134881b0a2fe7cbf4ca3b2bd01bc6c59adf345454be3fcd55b5911c267271bb303757bf8323.css integrity="sha512-cTsPyZnOldz511+xhxEOsIcY2kr9uf2Aui7xNIgbCi/ny/TKOyvQG8bFmt80VFS+P81VtZEcJnJxuzA3V7+DIw==">
+<link type=text/css rel=stylesheet href=https://harishk501.github.io/css/main.bundle.min.4b3a3ff48f0371d2c76d17d03f39f8165d7b3158fcc756e6cc3290e013894a7a1de1c0a823ec3a5e9bb2f1b3837e68476463086fe7e122547e96e9d0bda88637.css integrity="sha512-Szo/9I8DcdLHbRfQPzn4Fl17MVj8x1bmzDKQ4BOJSnod4cCoI+w6Xpuy8bODfmhHZGMIb+fhIlR+lunQvaiGNw==">
 <script type=text/javascript src=https://harishk501.github.io/js/appearance.min.4df8309499991be53c71b2b39ba0f5d5e77ea7d411d0710ce48c24218e7cc24ded28f19e85838fdc56db2306195cb001f049f577be0cf0ffb2dd6e2037ede1b9.js integrity="sha512-TfgwlJmZG+U8cbKzm6D11ed+p9QR0HEM5IwkIY58wk3tKPGehYOP3FbbIwYZXLAB8En1d74M8P+y3W4gN+3huQ=="></script>
 <script defer type=text/javascript id=script-bundle src=https://harishk501.github.io/js/main.bundle.min.238e7ce9c541b4e7abb5781ad8e736e849e74890fcb8a26e73ea1845f573b3a0cf91418b20ac4401bdbb57d9c6c009d8f6ec50dad6d44b48f3936aea0f95c391.js integrity="sha512-I4586cVBtOertXga2Oc26EnnSJD8uKJuc+oYRfVzs6DPkUGLIKxEAb27V9nGwAnY9uxQ2tbUS0jzk2rqD5XDkQ==" data-copy=Copy data-copied=Copied></script>
 <link rel=apple-touch-icon sizes=180x180 href=https://harishk501.github.io/apple-touch-icon.png>
@@ -37,6 +37,9 @@
 <style></style>
 </head>
 <body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 bg-neutral text-neutral-900 sm:px-14 md:px-24 lg:px-32 dark:bg-neutral-800 dark:text-neutral max-w-7xl">
+<div id=spinner>
+<div class=loader-15></div>
+</div>
 <div id=the-top class="absolute flex self-center">
 <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 dark:bg-neutral-600 focus:translate-y-0" href=#main-content><span class="font-bold ltr:pr-2 rtl:pl-2 text-primary-600 dark:text-primary-400">&darr;</span>Skip to main content</a>
 </div><header class="flex justify-between py-6 font-semibold sm:items-center sm:py-10 text-neutral-900 dark:text-neutral">
@@ -85,6 +88,7 @@
 </header>
 <script>function showDropdown(){document.getElementById("myDropdown").classList.toggle("hide")}window.onclick=function(d){var b,a,c;if(!d.target.matches('.dropbtn')&&!d.target.parentNode.matches('.dropbtn')){b=document.getElementsByClassName("dropdown-content");for(a=0;a<b.length;a++)c=b[a],c.classList.contains('hide')||c.classList.add('hide')}}</script>
 <main style="padding:0 1%" id=main-content class="relative grow">
+<style>#scrollToTopButton{display:none}</style>
 <article class="max-w-full prose dark:prose-invert">
 <header>
 <h1 id=title>My Artworks</h1>
@@ -96,13 +100,13 @@
 <div class=col-6>
 <p align=center class=hanger-img-span><img class=hanger-img src=img/hanger.png alt></p>
 <div class=img-div>
-<img class=my-art-img src=img/IMG_0014.PNG alt>
+<img class=my-art-img src=img/IMG_0014.png alt=img>
 </div>
 </div>
 <div class=col-5>
 <p align=center class=hanger-img-span><img class=hanger-img src=img/hanger.png alt></p>
 <div class=img-div>
-<img class=my-art-img src=img/IMG_0006.PNG alt>
+<img class=my-art-img src=img/IMG_0006.png alt>
 </div>
 </div>
 </div>
@@ -110,7 +114,7 @@
 <div class=col-5>
 <p align=center class=hanger-img-span><img class=hanger-img src=img/hanger.png alt></p>
 <div class=img-div>
-<img class=my-art-img src=img/IMG_0005.PNG alt>
+<img class=my-art-img src=img/IMG_0005.png alt>
 </div>
 </div>
 <div class=col-5>
@@ -162,5 +166,6 @@ Harish K
 </div>
 </div>
 </footer>
+<script>document.onreadystatechange=function(){document.readyState!=="complete"?(document.querySelector("body").style.visibility="hidden",document.querySelector("#spinner").style.display="block",document.querySelector("#spinner").style.visibility="visible"):(document.querySelector("#spinner").style.display="none",document.querySelector("body").style.visibility="visible")}</script>
 </body>
 </html>
