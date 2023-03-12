@@ -1,0 +1,239 @@
+<!doctype html><html lang=en dir=ltr class=scroll-smooth data-default-appearance=light data-auto-appearance=false><head>
+<meta charset=utf-8>
+<meta http-equiv=content-language content="en">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<title>Deploying React App to GitHub Pages • Harish K</title>
+<meta name=title content="Deploying React App to GitHub Pages • Harish K">
+<meta name=description content="My Portfolio Website">
+<link rel=canonical href=https://harishk501.github.io/posts/react-js/deploy-gh-pages/>
+<script src=https://kit.fontawesome.com/f95fbf7eb5.js crossorigin=anonymous></script>
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Londrina+Outline&family=Londrina+Shadow&display=swap" rel=stylesheet>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel=stylesheet>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel=stylesheet>
+<link type=text/css rel=stylesheet href=https://harishk501.github.io/css/main.bundle.min.855cc6168fec1100cee1c7191efb71d861ec27b27474967ab12745c1fa729930c6cc0644a5f50185d38767b76d28ea4871ead94ba7d1cbd5cbeb2678a56c9700.css integrity="sha512-hVzGFo/sEQDO4ccZHvtx2GHsJ7J0dJZ6sSdFwfpymTDGzAZEpfUBhdOHZ7dtKOpIcerZS6fRy9XL6yZ4pWyXAA==">
+<script type=text/javascript src=https://harishk501.github.io/js/appearance.min.4df8309499991be53c71b2b39ba0f5d5e77ea7d411d0710ce48c24218e7cc24ded28f19e85838fdc56db2306195cb001f049f577be0cf0ffb2dd6e2037ede1b9.js integrity="sha512-TfgwlJmZG+U8cbKzm6D11ed+p9QR0HEM5IwkIY58wk3tKPGehYOP3FbbIwYZXLAB8En1d74M8P+y3W4gN+3huQ=="></script>
+<script defer type=text/javascript id=script-bundle src=https://harishk501.github.io/js/main.bundle.min.238e7ce9c541b4e7abb5781ad8e736e849e74890fcb8a26e73ea1845f573b3a0cf91418b20ac4401bdbb57d9c6c009d8f6ec50dad6d44b48f3936aea0f95c391.js integrity="sha512-I4586cVBtOertXga2Oc26EnnSJD8uKJuc+oYRfVzs6DPkUGLIKxEAb27V9nGwAnY9uxQ2tbUS0jzk2rqD5XDkQ==" data-copy=Copy data-copied=Copied></script>
+<link rel=apple-touch-icon sizes=180x180 href=https://harishk501.github.io/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://harishk501.github.io/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://harishk501.github.io/favicon-16x16.png>
+<link rel=manifest href=https://harishk501.github.io/site.webmanifest>
+<meta property="og:title" content="Deploying React App to GitHub Pages">
+<meta property="og:description" content="In this post, I&rsquo;ll share the steps to be followed to deploy a react app to github pages.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://harishk501.github.io/posts/react-js/deploy-gh-pages/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-10-03T16:45:38+05:30">
+<meta property="article:modified_time" content="2021-10-03T16:45:38+05:30"><meta property="og:site_name" content="Harish K">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Deploying React App to GitHub Pages">
+<meta name=twitter:description content="In this post, I&rsquo;ll share the steps to be followed to deploy a react app to github pages.">
+<script type=application/ld+json>[{"@context":"https://schema.org","@type":"Article","articleSection":"Posts","name":"Deploying React App to GitHub Pages","headline":"Deploying React App to GitHub Pages","abstract":"In this post, I\u0026rsquo;ll share the steps to be followed to deploy a react app to github pages.","inLanguage":"en","url":"https:\/\/harishk501.github.io\/posts\/react-js\/deploy-gh-pages\/","author":{"@type":"Person","name":"Harish K"},"copyrightYear":"2021","dateCreated":"2021-10-03T16:45:38\u002b05:30","datePublished":"2021-10-03T16:45:38\u002b05:30","dateModified":"2021-10-03T16:45:38\u002b05:30","keywords":["react","github","deploy"],"mainEntityOfPage":"true","wordCount":"108"}]</script>
+<meta name=author content="Harish K">
+<link href=mailto:harishcse18501@gmail.com rel=me>
+<link href=https://github.com/harishk501 rel=me>
+<link href=https://instagram.com/harishk501 rel=me>
+<link href=https://linkedin.com/in/harishk501 rel=me>
+<link href=https://t.me/harishk501 rel=me>
+<link href=https://twitter.com/harishk501 rel=me>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<style></style>
+</head>
+<body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 bg-neutral text-neutral-900 sm:px-14 md:px-24 lg:px-32 dark:bg-neutral-800 dark:text-neutral max-w-7xl">
+<div id=spinner>
+<div class=loader-15></div>
+</div>
+<div id=the-top class="absolute flex self-center">
+<a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 dark:bg-neutral-600 focus:translate-y-0" href=#main-content><span class="font-bold ltr:pr-2 rtl:pl-2 text-primary-600 dark:text-primary-400">&darr;</span>Skip to main content</a>
+</div><header class="flex justify-between py-6 font-semibold sm:items-center sm:py-10 text-neutral-900 dark:text-neutral">
+<div>
+<a href=https://harishk501.github.io/>
+<img id=brand-img src=https://harishk501.github.io/img/logo-light.png width=50 height=50 class="max-w-[10rem] max-h-[10rem] object-scale-down object-left" alt="Harish K">
+</a>
+</div>
+<nav class=navbar>
+<ul class="flex flex-col list-none sm:flex-row">
+<li class="mb-1 nav-links ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+<a class=hover-underline-animation href=https://harishk501.github.io/posts/ title=Posts>posts</a>
+</li>
+<li class="mb-1 nav-links ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+<a class=hover-underline-animation href=https://harishk501.github.io/about/ title=About>about</a>
+</li>
+<li class="ltr:text-right rtl:text-left ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+<button id=appearance-switcher class="hover:text-primary-600 dark:hover:text-primary-400" type=button title="Toggle dark mode">
+<span class="inline dark:hidden">
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+</span>
+</span>
+<span class="hidden dark:inline">
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</span>
+</span>
+</button>
+</li>
+<li class="ltr:text-right rtl:text-left ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+<button id=search-button class="text-base hover:text-primary-600 dark:hover:text-primary-400" title="Search (/)">
+<span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M505 442.7 405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9.0 208 0S0 93.1.0 208s93.1 208 208 208c48.3.0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9.0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7.0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7.0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+</button>
+</li>
+<li id=toggle-button class="ltr:text-right rtl:text-left ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+<button class=dropbtn onclick=showDropdown()>
+<i class="fa-solid fa-bars dropbtn text-base hover:text-primary-600 dark:hover:text-primary-400"></i>
+</button>
+<div id=myDropdown class="dropdown-content hide">
+<a href=https://harishk501.github.io/posts/ title=Posts>posts</a>
+<a href=https://harishk501.github.io/about/ title=About>about</a>
+</div>
+</li>
+</ul>
+</nav>
+</header>
+<script>function showDropdown(){document.getElementById("myDropdown").classList.toggle("hide")}window.onclick=function(d){var b,a,c;if(!d.target.matches('.dropbtn')&&!d.target.parentNode.matches('.dropbtn')){b=document.getElementsByClassName("dropdown-content");for(a=0;a<b.length;a++)c=b[a],c.classList.contains('hide')||c.classList.add('hide')}}</script>
+<main style="padding:0 1%" id=main-content class="relative grow">
+<article class=max-w-full>
+<header>
+<ol class="text-sm text-neutral-500 dark:text-neutral-400">
+<li class="inline hidden">
+<a class=hover-underline-animation href=https://harishk501.github.io/>Harish K</a><span class="px-1 text-primary-500">/</span>
+</li>
+<li class=inline>
+<a class=hover-underline-animation href=https://harishk501.github.io/posts/>Posts</a><span class="px-1 text-primary-500">/</span>
+</li>
+<li class=inline>
+<a class=hover-underline-animation href=https://harishk501.github.io/posts/react-js/>React JS</a><span class="px-1 text-primary-500">/</span>
+</li>
+<li class="inline hidden">
+<a class=hover-underline-animation href=https://harishk501.github.io/posts/react-js/deploy-gh-pages/>Deploying React App to GitHub Pages</a><span class="px-1 text-primary-500">/</span>
+</li>
+</ol>
+<h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+Deploying React App to GitHub Pages
+</h1>
+<div class="mt-8 mb-12 text-base text-neutral-500 dark:text-neutral-400">
+<div class="flex flex-row flex-wrap items-center">
+<time datetime="2021-10-03 16:45:38 +0530 IST">3 October 2021</time><span class="px-2 text-primary-500">&#183;</span><span title="Reading time">1 min</span>
+</div>
+<div style=height:7px></div>
+<div class="my-1 text-xs text-neutral-500 dark:text-neutral-400">
+<a href=https://harishk501.github.io/tags/react/ class="px-1 py-[1px] border rounded-md border-neutral-200 dark:border-neutral-600 hover:border-primary-300 hover:text-primary-700 dark:hover:border-primary-600 dark:hover:text-primary-400">#react</a>
+<a href=https://harishk501.github.io/tags/github/ class="px-1 py-[1px] border rounded-md border-neutral-200 dark:border-neutral-600 hover:border-primary-300 hover:text-primary-700 dark:hover:border-primary-600 dark:hover:text-primary-400">#github</a>
+<a href=https://harishk501.github.io/tags/deploy/ class="px-1 py-[1px] border rounded-md border-neutral-200 dark:border-neutral-600 hover:border-primary-300 hover:text-primary-700 dark:hover:border-primary-600 dark:hover:text-primary-400">#deploy</a>
+</div>
+</div>
+</header>
+<section class="max-w-full mt-6 prose dark:prose-invert">
+<p>Create a react app</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>npm init react-app <span class=o>{</span>react-app-name<span class=o>}</span>
+</code></pre></div><p>Create an empty repository in GitHub with the same name of the react app.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>git remote add origin https://github.com/<span class=o>{</span>github-username<span class=o>}</span>/<span class=o>{</span>repo-name<span class=o>}</span>
+</code></pre></div><div class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900">
+<span class="ltr:pr-3 rtl:pl-3 text-primary-400" style=position:relative;bottom:4px>
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M506.3 417 293 53c-16.33-28-57.54-28-73.98.0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6c32.76.0 53.26-35 36.96-63zM232 168c0-13.25 10.75-24 24-24s24 10.8 24 24v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zm24 248c-17.36.0-31.44-14.08-31.44-31.44s14.07-31.44 31.44-31.44 31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+</span>
+</span>
+<span class=dark:text-neutral-300><strong>Note:</strong> Replace <strong>{github-username}</strong> with your GitHub username and <strong>{repo-name}</strong> with your repository name.</span>
+</div>
+<p>Install <strong>gh-pages</strong> package and save it as a dev dependency.</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>npm install gh-pages --save-dev
+</code></pre></div><p>In package.json, add this line</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=err>homepage:</span> <span class=s2>&#34;https://{github-username}.github.io/{repository-name}&#34;</span><span class=err>,</span>
+</code></pre></div><p align=center>
+<img src=home.png width=700>
+</p>
+<p>Under scripts, add these two lines</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=s2>&#34;predeploy&#34;</span><span class=err>:</span> <span class=s2>&#34;npm run build&#34;</span><span class=err>,</span>
+<span class=s2>&#34;deploy&#34;</span><span class=err>:</span> <span class=s2>&#34;gh-pages -d build&#34;</span><span class=err>,</span>
+</code></pre></div><p align=center>
+<img src=scripts.png width=400>
+</p>
+<p>Push all your code to the remote GitHub repository.</p>
+<p>Now, run this command</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>npm run deploy
+</code></pre></div><p>On the browser, go to → <strong>https://{github-username}.github.io/{repository-name}</strong></p>
+<p>Yay!!! Our react app is published using GitHub Pages! 🎉</p>
+</section>
+<footer class="pt-8 max-w-prose">
+<br>
+<div class=flex>
+<img id=profile-img class="w-24 h-24 !mt-0 !mb-0 ltr:mr-4 rtl:ml-4 rounded-full" width=96 height=96 alt=Author src=https://harishk501.github.io/img/me-1_hu368a1b8958e2c7a4f2b7317418306ad2_109031_192x192_fill_q75_box_smart1.jpeg>
+<div class=place-self-center>
+<div class="text-[0.6rem] leading-3 text-neutral-500 dark:text-neutral-400 uppercase">
+Author
+</div>
+<div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+Harish K
+</div>
+<div class="text-sm text-neutral-700 dark:text-neutral-400">Eat. Code. Sleep. Repeat.</div>
+<div class="text-2xl sm:text-lg">
+<div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+<a class="home-icons hover-underline-animation px-1 hover:text-primary-700 dark:hover:text-primary-400" href=mailto:harishcse18501@gmail.com target=_blank aria-label=Email rel="me noopener noreferrer">
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+</span>
+</a>
+<a class="home-icons hover-underline-animation px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://github.com/harishk501 target=_blank aria-label=Github rel="me noopener noreferrer">
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg>
+</span>
+</a>
+<a class="home-icons hover-underline-animation px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://instagram.com/harishk501 target=_blank aria-label=Instagram rel="me noopener noreferrer">
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentcolor" d="M224.1 141c-63.6.0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1.0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9.0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9.0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9.0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9.0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8.0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+</span>
+</a>
+<a class="home-icons hover-underline-animation px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://linkedin.com/in/harishk501 target=_blank aria-label=Linkedin rel="me noopener noreferrer">
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+</span>
+</a>
+<a class="home-icons hover-underline-animation px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://t.me/harishk501 target=_blank aria-label=Telegram rel="me noopener noreferrer">
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+</span>
+</a>
+<a class="home-icons hover-underline-animation px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://twitter.com/harishk501 target=_blank aria-label=Twitter rel="me noopener noreferrer">
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg>
+</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<div>
+</div>
+</article>
+</main>
+<div id=search-wrapper class="fixed inset-0 z-50 flex flex-col p-4 sm:p-6 md:p-[10vh] lg:p-[12vh] w-screen h-screen cursor-default bg-neutral-500/50 backdrop-blur-sm dark:bg-neutral-900/50 invisible" data-url=https://harishk501.github.io/>
+<div id=search-modal class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg border-neutral-200 top-20 bg-neutral dark:bg-neutral-800 dark:border-neutral-700">
+<header class="relative z-10 flex items-center justify-between flex-none px-2">
+<form class="flex items-center flex-auto min-w-0">
+<div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+<span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M505 442.7 405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9.0 208 0S0 93.1.0 208s93.1 208 208 208c48.3.0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9.0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7.0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7.0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+</div>
+<input type=search id=search-query class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-transparent focus:outline-2" placeholder=Search tabindex=0>
+</form>
+<button id=close-search-button class="flex items-center justify-center w-8 h-8 text-neutral-700 dark:text-neutral hover:text-primary-600 dark:hover:text-primary-400" title="Close (Esc)">
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentcolor" d="M310.6 361.4c12.5 12.5 12.5 32.75.0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3 54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75.0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75.0-45.25s32.75-12.5 45.25.0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25.0s12.5 32.75.0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+</button>
+</header>
+<section class="flex-auto px-2 overflow-auto">
+<ul id=search-results>
+</ul>
+</section>
+</div>
+</div>
+<br><br>
+<footer class=py-10>
+<div>
+<div>
+<p style=text-align:center class="text-sm text-neutral-400 dark:text-neutral-400">
+&copy;
+2023
+Harish K
+</p>
+</div>
+</div>
+</footer>
+<script>document.onreadystatechange=function(){document.readyState!=="complete"?(document.querySelector("body").style.visibility="hidden",document.querySelector("#spinner").style.display="block",document.querySelector("#spinner").style.visibility="visible"):(document.querySelector("#spinner").style.display="none",document.querySelector("body").style.visibility="visible")}</script>
+</body>
+</html>
