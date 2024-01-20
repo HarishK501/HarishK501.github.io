@@ -38,6 +38,9 @@
 <script>const _sitePreference=document.documentElement.getAttribute("data-default-appearance"),_userPreference=localStorage.getItem("appearance");(_sitePreference==="dark"&&_userPreference===null||_userPreference==="dark")&&document.documentElement.classList.add("dark")</script>
 </head>
 <body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 bg-neutral text-neutral-900 sm:px-14 md:px-24 lg:px-32 dark:bg-neutral-800 dark:text-neutral max-w-7xl">
+<div id=spinner>
+<div class=loader-15></div>
+</div>
 <div id=the-top class="absolute flex self-center">
 <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 dark:bg-neutral-600 focus:translate-y-0" href=#main-content><span class="font-bold ltr:pr-2 rtl:pl-2 text-primary-600 dark:text-primary-400">&darr;</span>Skip to main content</a>
 </div><header class="flex justify-between py-6 font-semibold sm:items-center sm:py-10 text-neutral-900 dark:text-neutral">
@@ -90,23 +93,20 @@
 </header>
 <script>function showDropdown(){document.getElementById("myDropdown").classList.toggle("hide")}window.onclick=function(d){var b,a,c;if(!d.target.matches('.dropbtn')&&!d.target.parentNode.matches('.dropbtn')){b=document.getElementsByClassName("dropdown-content");for(a=0;a<b.length;a++)c=b[a],c.classList.contains('hide')||c.classList.add('hide')}}</script>
 <main style="padding:0 1%;position:relative" id=main-content class="relative grow">
-<div id=spinner>
-<div class=loader-15></div>
-</div>
 <style>#scrollToTopButton{display:none}</style>
 <article class="max-w-full prose dark:prose-invert">
 <header>
 <h1 id=title>About</h1>
 </header>
 <section>
-<style>.about-sections .text-large{margin-top:0}.about-section-heading{margin-bottom:0;font-weight:700;font-size:20pt}#right-gear{position:absolute;opacity:.1;z-index:-1;top:-3rem;right:4rem}.dark #right-gear{opacity:.3}</style>
+<style>.about-sections .text-large{margin-top:0}.about-section-heading{margin-bottom:.5em;font-weight:700;font-size:20pt}#right-gear{position:absolute;opacity:.1;z-index:-1;top:-3rem;right:4rem}.dark #right-gear{opacity:.3}</style>
 <div id=about-content>
 <div class=about-sections>
 <p class=about-section-heading>Hi there!</p>
 <p class=text-large>
 I'm Harish, a Software Engineer at Cisco. I've been passionate about Web Development and Machine Learning since high
 school. Currently, I'm working on developing intuitive applications on Salesforce and
-looking forward to expanding my knowledge in the Salesforce world to help build the most
+looking forward to expanding my knowledge in the Salesforce world to build the most
 scalable and secure solutions.
 <br><br>
 My mission as a software engineer is to use my technical skills to create innovative and
@@ -116,7 +116,7 @@ contributor to my team and the tech community. Through my work, I always try to 
 boundaries of what's possible and make a meaningful impact.
 <br><br>
 When I'm not working, you can usually find me playing mobile games, or doing some
-digital artwork on my iPad (Check out my artworks <a href=artworks>here</a>!). I also
+digital artwork on my iPad (Check out my artworks <a href=https://harishk501.github.io/artworks>here</a>!). I also
 sing, at times. Lately, I have picked up the habit of reading books too. (The Alchemist
 is my favourite so far!!!) <br><br>
 If you have any questions or just want to say hi, feel free to drop an email / send a
@@ -124,7 +124,7 @@ message in LinkedIn. I'm always happy to connect, and, thanks for stopping by! ð
 </p>
 </div>
 </div>
-<script>$("a[title|='About']").removeClass("hover-underline-animation"),$("a[title|='About']").addClass("active-nav-item");var rightgear=document.getElementById("right-gear");window.addEventListener("scroll",function(){rightgear.style.transform="rotate("+window.pageYOffset/3+"deg)"})</script>
+<script>$("a[title|='About']").removeClass("hover-underline-animation"),$("a[title|='About']").addClass("active-nav-item")</script>
 </section>
 </article>
 <section>
