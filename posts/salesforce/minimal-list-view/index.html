@@ -29,7 +29,7 @@
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="Minimal List View using Aura Components in Salesforce">
 <meta name=twitter:description content>
-<script type=application/ld+json>[{"@context":"https://schema.org","@type":"Article","articleSection":"Posts","name":"Minimal List View using Aura Components in Salesforce","headline":"Minimal List View using Aura Components in Salesforce","inLanguage":"en","url":"https:\/\/harishk501.github.io\/posts\/salesforce\/minimal-list-view\/","author":{"@type":"Person","name":"Harish K"},"copyrightYear":"2022","dateCreated":"2022-04-03T17:42:54\u002b05:30","datePublished":"2022-04-03T17:42:54\u002b05:30","dateModified":"2022-04-03T17:42:54\u002b05:30","keywords":["customization","aura","lwc"],"mainEntityOfPage":"true","wordCount":"474"}]</script>
+<script type=application/ld+json>[{"@context":"https://schema.org","@type":"Article","articleSection":"Posts","name":"Minimal List View using Aura Components in Salesforce","headline":"Minimal List View using Aura Components in Salesforce","inLanguage":"en","url":"https:\/\/harishk501.github.io\/posts\/salesforce\/minimal-list-view\/","author":{"@type":"Person","name":"Harish K"},"copyrightYear":"2022","dateCreated":"2022-04-03T17:42:54\u002b05:30","datePublished":"2022-04-03T17:42:54\u002b05:30","dateModified":"2022-04-03T17:42:54\u002b05:30","keywords":["customization","aura","lwc"],"mainEntityOfPage":"true","wordCount":"471"}]</script>
 <meta name=author content="Harish K">
 <link href=mailto:harishcse18501@gmail.com rel=me>
 <link href=https://github.com/harishk501 rel=me>
@@ -156,7 +156,7 @@ Table of Contents
 </p>
 <p>As shown in the image, the minimal list view removes most of the elements from the standard list view. It has a custom title, and an option to reset the width of the columns if altered by the user.</p>
 <p>Now let&rsquo;s jump to the coding part. If you already know how to create aura components in VS code, you can proceed with creating one and skip to <a href=https://harishk501.github.io/posts/salesforce/minimal-list-view/#building-the-minimal-list-view-component>this</a> section.</p>
-<h2 id=creating-an-aura-component class="relative group">Creating an Aura Component <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#creating-an-aura-component aria-label=Anchor>#</a></span></h2>
+<h2 id=creating-an-aura-component class="relative group">Creating an Aura Component </h2>
 <div class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900">
 <span class="ltr:pr-3 rtl:pl-3 text-primary-400" style=position:relative;bottom:4px>
 <span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M506.3 417 293 53c-16.33-28-57.54-28-73.98.0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6c32.76.0 53.26-35 36.96-63zM232 168c0-13.25 10.75-24 24-24s24 10.8 24 24v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zm24 248c-17.36.0-31.44-14.08-31.44-31.44s14.07-31.44 31.44-31.44 31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
@@ -171,7 +171,7 @@ Table of Contents
 <li>Provide the desired directory or just press <strong>Enter</strong> again</li>
 <li>Now the Aura component has been successfully created and ready to be built and customized.</li>
 </ul>
-<h2 id=building-the-minimal-list-view-component class="relative group">Building the Minimal list view component <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#building-the-minimal-list-view-component aria-label=Anchor>#</a></span></h2>
+<h2 id=building-the-minimal-list-view-component class="relative group">Building the Minimal list view component </h2>
 <p>Copy the code into the corresponding files.</p>
 <p><strong>minimalListViewAura.cmp</strong></p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>aura:component</span> <span class=na>implements</span><span class=o>=</span><span class=s>&#34;flexipage:availableForAllPageTypes&#34;</span> <span class=na>access</span><span class=o>=</span><span class=s>&#34;global&#34;</span><span class=p>&gt;</span>
@@ -244,7 +244,7 @@ Table of Contents
 /posts/salesforce/minimal-list-view/images/builder-page_hu8cd453b142350f3bab300b73804e5164_98827_1320x0_resize_box_3.png 2x" src=https://harishk501.github.io/posts/salesforce/minimal-list-view/images/builder-page_hu8cd453b142350f3bab300b73804e5164_98827_660x0_resize_box_3.png alt=list-view-added-to-lightning-page>
 </figure>
 </p>
-<h2 id=using-minimal-list-view-inside-another-aura-component class="relative group">Using Minimal list view inside another aura component <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#using-minimal-list-view-inside-another-aura-component aria-label=Anchor>#</a></span></h2>
+<h2 id=using-minimal-list-view-inside-another-aura-component class="relative group">Using Minimal list view inside another aura component </h2>
 <p>The component which we now created can be injected into other aura components and reused for listviews in other objects. For example, if you want to view My Opportunities as a minimal list view inside another aura component, insert the following code at the desired section inside your component.</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>c:minimalListViewAura</span>
     <span class=na>object</span><span class=o>=</span><span class=s>&#34;Opportunity&#34;</span>
