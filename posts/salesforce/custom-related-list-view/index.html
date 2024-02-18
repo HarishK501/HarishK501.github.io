@@ -1,0 +1,898 @@
+<!doctype html><html lang=en dir=ltr class=scroll-smooth data-default-appearance=light data-auto-appearance=false><head>
+<meta charset=utf-8>
+<meta http-equiv=content-language content="en">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<title>Custom Related List View using uiRelatedListApi methods • Harish K</title>
+<meta name=title content="Custom Related List View using uiRelatedListApi methods • Harish K">
+<meta name=description content="My Portfolio Website">
+<link rel=canonical href=https://harishk501.github.io/posts/salesforce/custom-related-list-view/>
+<script src=https://kit.fontawesome.com/f95fbf7eb5.js crossorigin=anonymous></script>
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Londrina+Outline&family=Londrina+Shadow&display=swap" rel=stylesheet>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel=stylesheet>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel=stylesheet>
+<link type=text/css rel=stylesheet href=https://harishk501.github.io/css/main.bundle.min.cc0a591d084528b5591f7a36e90b2dbfef4df51e9c010833f8653fbc4bdfb438906467993046440c45ab7186485a3ad47b6354e85e7c26e5cf489314ee97ef89.css integrity="sha512-zApZHQhFKLVZH3o26Qstv+9N9R6cAQgz+GU/vEvftDiQZGeZMEZEDEWrcYZIWjrUe2NU6F58JuXPSJMU7pfviQ==">
+<script type=text/javascript src=https://harishk501.github.io/js/appearance.min.4df8309499991be53c71b2b39ba0f5d5e77ea7d411d0710ce48c24218e7cc24ded28f19e85838fdc56db2306195cb001f049f577be0cf0ffb2dd6e2037ede1b9.js integrity="sha512-TfgwlJmZG+U8cbKzm6D11ed+p9QR0HEM5IwkIY58wk3tKPGehYOP3FbbIwYZXLAB8En1d74M8P+y3W4gN+3huQ=="></script>
+<script defer type=text/javascript id=script-bundle src=https://harishk501.github.io/js/main.bundle.min.d42bbb09e298b6dff9cc201a140c11d190aef5b612f2cb3bbd61a99ab5f07c1921760c70785ad89aec59a64a5695668bc7cf3517cd2eb8635de585730156a6d7.js integrity="sha512-1Cu7CeKYtt/5zCAaFAwR0ZCu9bYS8ss7vWGpmrXwfBkhdgxweFrYmuxZpkpWlWaLx881F80uuGNd5YVzAVam1w==" data-copy=Copy data-copied=Copied></script>
+<link rel=apple-touch-icon sizes=180x180 href=https://harishk501.github.io/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://harishk501.github.io/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://harishk501.github.io/favicon-16x16.png>
+<link rel=manifest href=https://harishk501.github.io/site.webmanifest>
+<meta property="og:title" content="Custom Related List View using uiRelatedListApi methods">
+<meta property="og:description" content="In this post, we&rsquo;ll use Lightning Web Components and User Interface APIs in Salesforce to build a custom related list view that can display complete data of fields in multiple lines without clipping out the text. First, let&rsquo;s take a look at it&rsquo;s cool features, then we&rsquo;ll proceed with the implementation.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://harishk501.github.io/posts/salesforce/custom-related-list-view/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2024-02-17T20:15:39+05:30">
+<meta property="article:modified_time" content="2024-02-17T20:15:39+05:30"><meta property="og:site_name" content="Harish K">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Custom Related List View using uiRelatedListApi methods">
+<meta name=twitter:description content="In this post, we&rsquo;ll use Lightning Web Components and User Interface APIs in Salesforce to build a custom related list view that can display complete data of fields in multiple lines without clipping out the text. First, let&rsquo;s take a look at it&rsquo;s cool features, then we&rsquo;ll proceed with the implementation.">
+<script type=application/ld+json>[{"@context":"https://schema.org","@type":"Article","articleSection":"Posts","name":"Custom Related List View using uiRelatedListApi methods","headline":"Custom Related List View using uiRelatedListApi methods","abstract":"In this post, we\u0026rsquo;ll use Lightning Web Components and User Interface APIs in Salesforce to build a custom related list view that can display complete data of fields in multiple lines without clipping out the text. First, let\u0026rsquo;s take a look at it\u0026rsquo;s cool features, then we\u0026rsquo;ll proceed with the implementation.","inLanguage":"en","url":"https:\/\/harishk501.github.io\/posts\/salesforce\/custom-related-list-view\/","author":{"@type":"Person","name":"Harish K"},"copyrightYear":"2024","dateCreated":"2024-02-17T20:15:39\u002b05:30","datePublished":"2024-02-17T20:15:39\u002b05:30","dateModified":"2024-02-17T20:15:39\u002b05:30","keywords":["customization","lwc","listview"],"mainEntityOfPage":"true","wordCount":"2026"}]</script>
+<meta name=author content="Harish K">
+<link href=mailto:harishcse18501@gmail.com rel=me>
+<link href=https://github.com/harishk501 rel=me>
+<link href=https://linkedin.com/in/harishk501 rel=me>
+<link href=https://t.me/harishk501 rel=me>
+<link href=https://twitter.com/harishk501 rel=me>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script>const _sitePreference=document.documentElement.getAttribute("data-default-appearance"),_userPreference=localStorage.getItem("appearance");(_sitePreference==="dark"&&_userPreference===null||_userPreference==="dark")&&document.documentElement.classList.add("dark")</script>
+</head>
+<body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 bg-neutral text-neutral-900 sm:px-14 md:px-24 lg:px-32 dark:bg-neutral-800 dark:text-neutral max-w-7xl">
+<div id=spinner>
+<div class=loader-15></div>
+</div>
+<div id=the-top class="absolute flex self-center">
+<a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 dark:bg-neutral-600 focus:translate-y-0" href=#main-content><span class="font-bold ltr:pr-2 rtl:pl-2 text-primary-600 dark:text-primary-400">&darr;</span>Skip to main content</a>
+</div><header class="flex justify-between py-6 font-semibold sm:items-center sm:py-10 text-neutral-900 dark:text-neutral">
+<div>
+<a href=https://harishk501.github.io/>
+<img id=brand-img src=https://harishk501.github.io/img/logo-light.png width=50 height=50 class="max-w-[10rem] max-h-[10rem] object-scale-down object-left" alt="Harish K">
+</a>
+</div>
+<nav class=navbar>
+<ul class="flex flex-row list-none">
+<li class="mb-1 nav-links ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+<a class=hover-underline-animation href=https://harishk501.github.io/posts/ title=Posts>posts</a>
+</li>
+<li class="mb-1 nav-links ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+<a class=hover-underline-animation href=https://harishk501.github.io/about/ title=About>about</a>
+</li>
+<li class="ltr:text-right rtl:text-left ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+<button id=appearance-switcher class="hover:text-primary-600 dark:hover:text-primary-400" type=button title="Toggle dark mode">
+<span class="inline dark:hidden">
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+</span>
+</span>
+<span class="hidden dark:inline">
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</span>
+</span>
+</button>
+</li>
+<li class="ltr:text-right rtl:text-left ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+<button id=search-button class="text-base hover:text-primary-600 dark:hover:text-primary-400" title="Search (/)">
+<span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M505 442.7 405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9.0 208 0S0 93.1.0 208s93.1 208 208 208c48.3.0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9.0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7.0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7.0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+</button>
+</li>
+<li id=toggle-button class="ltr:text-right rtl:text-left ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0" style=position:relative;top:3px>
+<button class=dropbtn onclick=showDropdown()>
+<i class="fa-solid fa-bars dropbtn text-base hover:text-primary-600 dark:hover:text-primary-400"></i>
+</button>
+<div id=myDropdown class="dropdown-content hide">
+<a href=https://harishk501.github.io/posts/ title=Posts>posts</a>
+<a href=https://harishk501.github.io/about/ title=About>about</a>
+</div>
+</li>
+</ul>
+</nav>
+</header>
+<script>function showDropdown(){document.getElementById("myDropdown").classList.toggle("hide")}window.onclick=function(d){var b,a,c;if(!d.target.matches('.dropbtn')&&!d.target.parentNode.matches('.dropbtn')){b=document.getElementsByClassName("dropdown-content");for(a=0;a<b.length;a++)c=b[a],c.classList.contains('hide')||c.classList.add('hide')}}</script>
+<main style="padding:0 1%;position:relative" id=main-content class="relative grow">
+<div style=max-width:68ch>
+<ol class="text-md text-neutral-500 dark:text-neutral-400">
+<li class="inline hidden">
+<a class=hover-underline-animation href=https://harishk501.github.io/>Harish K</a><span class="px-1 text-primary-500">/</span>
+</li>
+<li class=inline>
+<a class=hover-underline-animation href=https://harishk501.github.io/all-posts/>Posts</a><span class="px-1 text-primary-500">/</span>
+</li>
+<li class=inline>
+<a class=hover-underline-animation href=https://harishk501.github.io/posts/salesforce/>Salesforce</a><span class="px-1 text-primary-500">/</span>
+</li>
+<li class="inline hidden">
+<a class=hover-underline-animation href=https://harishk501.github.io/posts/salesforce/custom-related-list-view/>Custom Related List View using uiRelatedListApi methods</a><span class="px-1 text-primary-500">/</span>
+</li>
+</ol>
+<h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+Custom Related List View using uiRelatedListApi methods
+</h1>
+<div class="mt-8 mb-8 text-base text-neutral-500 dark:text-neutral-400">
+<div class="flex flex-row flex-wrap items-center">
+<time datetime="2024-02-17 20:15:39 +0530 IST">Feb 17, 2024</time><span class="px-2 text-primary-500">&#183;</span><span title="Reading time">10 mins</span>
+</div>
+<div style=height:7px></div>
+<div class="my-1 text-xs text-neutral-500 dark:text-neutral-400">
+<a href=https://harishk501.github.io/tags/customization/ class="px-1 py-[1px] border rounded-md border-neutral-200 dark:border-neutral-600 hover:border-primary-300 hover:text-primary-700 dark:hover:border-primary-600 dark:hover:text-primary-400">#customization</a>
+<a href=https://harishk501.github.io/tags/lwc/ class="px-1 py-[1px] border rounded-md border-neutral-200 dark:border-neutral-600 hover:border-primary-300 hover:text-primary-700 dark:hover:border-primary-600 dark:hover:text-primary-400">#lwc</a>
+<a href=https://harishk501.github.io/tags/listview/ class="px-1 py-[1px] border rounded-md border-neutral-200 dark:border-neutral-600 hover:border-primary-300 hover:text-primary-700 dark:hover:border-primary-600 dark:hover:text-primary-400">#listview</a>
+</div>
+</div>
+</div>
+<article>
+<header class=max-w-prose>
+</header>
+<section class="flex flex-col max-w-full mt-0 prose lg:flex-row dark:prose-invert">
+<div class="order-first px-0 lg:max-w-xs ltr:lg:pl-8 rtl:lg:pr-8 lg:order-last">
+<div class="ltr:pl-5 rtl:pr-5 toc lg:sticky lg:top-10">
+<br>
+<details open class="mt-0 overflow-hidden rounded-lg rtl:pr-5 ltr:pl-5 ltr:-ml-5 rtl:-mr-5 lg:mt-3">
+<summary class="block py-1 text-lg font-semibold cursor-pointer rtl:pr-5 ltr:pl-5 ltr:-ml-5 rtl:-mr-5 text-neutral-800 dark:text-neutral-100 lg:hidden bg-neutral-100 dark:bg-neutral-700">
+Table of Contents
+</summary>
+<div class="py-2 border-dotted ltr:border-l rtl:border-r rtl:pr-5 ltr:pl-5 ltr:-ml-5 rtl:-mr-5 border-neutral-300 dark:border-neutral-600">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#features>Features</a>
+<ul>
+<li><a href=#1-reusable-lwc-with-design-attributes>1. Reusable LWC with design attributes</a></li>
+<li><a href=#2-view-complete-data-with-wrap-text>2. View complete data with “Wrap Text”</a></li>
+<li><a href=#3-view-rich-text-area-fields-in-rich-text-formatting>3. View Rich Text Area fields in rich-text formatting</a></li>
+</ul>
+</li>
+<li><a href=#implementation>Implementation</a>
+<ul>
+<li><a href=#building-the-custom-datatable-component>Building the custom datatable component</a></li>
+<li><a href=#using-the-custom-datatable-to-build-a-custom-related-list-view>Using the custom datatable to build a custom related list view</a></li>
+<li><a href=#add-the-custom-related-list-component-to-the-record-page>Add the custom related list component to the record page</a></li>
+</ul>
+</li>
+<li><a href=#useful-resources>Useful Resources</a></li>
+</ul>
+</nav>
+</div>
+</details>
+</div>
+</div>
+<div class="min-w-0 min-h-0 max-w-prose">
+<p>In this post, we&rsquo;ll use Lightning Web Components and User Interface APIs in Salesforce to build a custom related list view that can display complete data of fields in multiple lines without clipping out the text. First, let&rsquo;s take a look at it&rsquo;s cool features, then we&rsquo;ll proceed with the implementation.</p>
+<h2 id=features class="relative group">Features </h2>
+<h3 id=1-reusable-lwc-with-design-attributes class="relative group">1. Reusable LWC with design attributes </h3>
+<p>This custom component leverages Salesforce User Interface APIs to create a generic related list view component, customizable for any supported object through design attributes.</p>
+<p>
+<figure>
+<img class="my-0 rounded-md" src=Custom%20Related%20List%20View%20using%20uiRelatedListApi%20me%20b92edde661d747f4a723cf2ee4bd33fc/Untitled.gif alt=Untitled>
+</figure>
+</p>
+<div class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900">
+<span class="ltr:pr-3 rtl:pl-3 text-primary-400" style=position:relative;bottom:4px>
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentcolor" d="M172.5 131.1c55.6-55.59 148-55.59 203.6.0 50 50 57.4 129.7 16.3 187.2L391.3 319.9C381 334.2 361 337.6 346.7 327.3c-14.4-10.3-17.8-30.3-7.5-44.6L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2c-31.4-31.4-82.5-31.4-114 0L105.5 289.5c-31.51 30.6-31.51 82.5.0 114C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4 265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2c-58.4 41.1-136.3 34.5-186.29-15.4-56.469-56.5-56.469-148.1.0-204.5L172.5 131.1zM467.5 380c-56.5 56.5-148 56.5-204.5.0-50-50-56.5-128.8-15.4-186.3L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7 307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8c31.4 31.4 82.5 31.4 114 0L534.5 222.5c31.5-31.5 31.5-83.4.0-114C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58 374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24c56.5 56.46 56.5 148.06.0 204.46L467.5 380z"/></svg>
+</span>
+</span>
+<span class=dark:text-neutral-300>Refer to <a href=https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_list_view_supported_objects.htm>this</a> doc to view all the List View Supported Objects.</span>
+</div>
+<h3 id=2-view-complete-data-with-wrap-text class="relative group">2. View complete data with “Wrap Text” </h3>
+<p>If data exceeds more than one line for a particular field/cell, the custom datatable truncates it in a single line by default. But when clicked on &ldquo;Wrap Text&rdquo;, it expands the row with a scroll bar on the particular cell, to view the complete content.
+<figure>
+<img class="my-0 rounded-md" src=Custom%20Related%20List%20View%20using%20uiRelatedListApi%20me%20b92edde661d747f4a723cf2ee4bd33fc/Untitled%201.gif alt=Untitled>
+</figure>
+</p>
+<h3 id=3-view-rich-text-area-fields-in-rich-text-formatting class="relative group">3. View Rich Text Area fields in rich-text formatting </h3>
+<p>The component also renders data in rich-text format for fields that have the datatype as Rich Text Area.
+<figure>
+<img class="my-0 rounded-md" src=Custom%20Related%20List%20View%20using%20uiRelatedListApi%20me%20b92edde661d747f4a723cf2ee4bd33fc/Untitled%202.gif alt=Untitled>
+</figure>
+</p>
+<h2 id=implementation class="relative group">Implementation </h2>
+<p>To build this custom related list view, we would need to create two LWCs:</p>
+<ul>
+<li>One - that extends the lightning datatable to support rich-text formatted content.</li>
+<li>Two - the container component that embeds the above custom component and implements the datatable functionalities (sorting, refresh, etc.).</li>
+</ul>
+<h3 id=building-the-custom-datatable-component class="relative group">Building the custom datatable component </h3>
+<p>Create a new LWC with the name - <code>customDatatable</code></p>
+<p><strong>customDatatable.html</strong></p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>template</span><span class=p>&gt;</span>
+<span class=p>&lt;/</span><span class=nt>template</span><span class=p>&gt;</span>
+</code></pre></div><p><strong>customDatatable.js</strong></p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=kr>import</span> <span class=nx>LightningDatatable</span> <span class=nx>from</span> <span class=s2>&#34;lightning/datatable&#34;</span><span class=p>;</span>
+<span class=kr>import</span> <span class=nx>richTextColumnType</span> <span class=nx>from</span> <span class=s2>&#34;./richTextColumnType.html&#34;</span><span class=p>;</span>
+<span class=kr>import</span> <span class=p>{</span> <span class=nx>api</span> <span class=p>}</span> <span class=nx>from</span> <span class=s2>&#34;lwc&#34;</span><span class=p>;</span>
+
+<span class=kr>export</span> <span class=k>default</span> <span class=kr>class</span> <span class=nx>CustomDatatable</span> <span class=kr>extends</span> <span class=nx>LightningDatatable</span> <span class=p>{</span>
+    <span class=kr>static</span> <span class=nx>customTypes</span> <span class=o>=</span> <span class=p>{</span>
+        <span class=c1>// custom type definition
+</span><span class=c1></span>        <span class=nx>richText</span><span class=o>:</span> <span class=p>{</span>
+            <span class=nx>template</span><span class=o>:</span> <span class=nx>richTextColumnType</span><span class=p>,</span>
+            <span class=nx>standardCellLayout</span><span class=o>:</span> <span class=kc>true</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+
+    <span class=err>@</span><span class=nx>api</span>
+    <span class=nx>customScrollToTop</span><span class=p>()</span> <span class=p>{</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>template</span><span class=p>.</span><span class=nx>querySelector</span><span class=p>(</span><span class=s1>&#39;.slds-scrollable_y&#39;</span><span class=p>).</span><span class=nx>scrollTop</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><p><strong>customDatatable.js-meta.xml</strong></p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-xml data-lang=xml><span class=cp>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class=nt>&lt;LightningComponentBundle</span> <span class=na>xmlns=</span><span class=s>&#34;http://soap.sforce.com/2006/04/metadata&#34;</span><span class=nt>&gt;</span>
+    <span class=nt>&lt;apiVersion&gt;</span>56.0<span class=nt>&lt;/apiVersion&gt;</span>
+    <span class=nt>&lt;isExposed&gt;</span>true<span class=nt>&lt;/isExposed&gt;</span>
+    <span class=nt>&lt;targets&gt;</span>
+        <span class=nt>&lt;target&gt;</span>lightning__RecordPage<span class=nt>&lt;/target&gt;</span>
+        <span class=nt>&lt;target&gt;</span>lightning__HomePage<span class=nt>&lt;/target&gt;</span>
+    <span class=nt>&lt;/targets&gt;</span>
+<span class=nt>&lt;/LightningComponentBundle&gt;</span>
+</code></pre></div><h3 id=using-the-custom-datatable-to-build-a-custom-related-list-view class="relative group">Using the custom datatable to build a custom related list view </h3>
+<p>Create another LWC with the name - <code>customRelatedList</code></p>
+<p><strong>customRelatedList.html</strong></p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>template</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;related-list-style-div&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-card_boundary&#34;</span><span class=p>&gt;</span>
+        <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-page-header related-list-header&#34;</span><span class=p>&gt;</span>
+            <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-page-header__row&#34;</span><span class=p>&gt;</span>
+                <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-page-header__col-title&#34;</span><span class=p>&gt;</span>
+                    <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-media&#34;</span><span class=p>&gt;</span>
+                        <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-media__figure&#34;</span><span class=p>&gt;</span>
+                            <span class=p>&lt;</span><span class=nt>lightning-icon</span>
+                                <span class=na>icon-name</span><span class=o>=</span><span class=s>{iconName}</span>
+                                <span class=na>alternative-text</span><span class=o>=</span><span class=s>{relatedListTitle}</span>
+                                <span class=na>size</span><span class=o>=</span><span class=s>&#34;small&#34;</span>
+                                <span class=na>title</span><span class=o>=</span><span class=s>&#34;large size&#34;</span>
+                            <span class=p>&gt;&lt;/</span><span class=nt>lightning-icon</span><span class=p>&gt;</span>
+                        <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+                        <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-media__body&#34;</span><span class=p>&gt;</span>
+                            <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-page-header__name&#34;</span><span class=p>&gt;</span>
+                                <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-page-header__name-title&#34;</span><span class=p>&gt;</span>
+                                    <span class=p>&lt;</span><span class=nt>h1</span><span class=p>&gt;</span>
+                                        <span class=p>&lt;</span><span class=nt>span</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-page-header__title slds-truncate related-list-title&#34;</span> <span class=na>title</span><span class=o>=</span><span class=s>{relatedListTitleWithCount}</span><span class=p>&gt;</span>
+                                            {relatedListTitleWithCount}
+                                        <span class=p>&lt;/</span><span class=nt>span</span><span class=p>&gt;</span>
+                                    <span class=p>&lt;/</span><span class=nt>h1</span><span class=p>&gt;</span>
+                                <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+                            <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+                        <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+                    <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+                <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+                <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-page-header__col-actions&#34;</span><span class=p>&gt;</span>
+                    <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-page-header__controls&#34;</span><span class=p>&gt;</span>
+                        <span class=p>&lt;</span><span class=nt>div</span> <span class=na>if:true</span><span class=o>=</span><span class=s>{showClipWrapButton}</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-page-header__control&#34;</span><span class=p>&gt;</span>
+                            <span class=p>&lt;</span><span class=nt>button</span>
+                                <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-button slds-button_icon slds-button_icon-more&#34;</span>
+                                <span class=na>aria-haspopup</span><span class=o>=</span><span class=s>&#34;true&#34;</span>
+                                <span class=na>aria-expanded</span><span class=o>=</span><span class=s>&#34;false&#34;</span>
+                                <span class=na>title</span><span class=o>=</span><span class=s>&#34;Clip/Wrap Text&#34;</span>
+                                <span class=na>onclick</span><span class=o>=</span><span class=s>{handleClipWrap}</span>
+                            <span class=p>&gt;</span>
+                                <span class=p>&lt;</span><span class=nt>lightning-icon</span>
+                                    <span class=na>if:true</span><span class=o>=</span><span class=s>{wrapText}</span>
+                                    <span class=na>icon-name</span><span class=o>=</span><span class=s>&#34;utility:right_align&#34;</span>
+                                    <span class=na>alternative-text</span><span class=o>=</span><span class=s>&#34;Wrap Text&#34;</span>
+                                    <span class=na>size</span><span class=o>=</span><span class=s>&#34;xx-small&#34;</span>
+                                <span class=p>&gt;&lt;/</span><span class=nt>lightning-icon</span><span class=p>&gt;</span>
+                                <span class=p>&lt;</span><span class=nt>lightning-icon</span>
+                                    <span class=na>if:false</span><span class=o>=</span><span class=s>{wrapText}</span>
+                                    <span class=na>icon-name</span><span class=o>=</span><span class=s>&#34;utility:center_align_text&#34;</span>
+                                    <span class=na>alternative-text</span><span class=o>=</span><span class=s>&#34;Clip Text&#34;</span>
+                                    <span class=na>size</span><span class=o>=</span><span class=s>&#34;xx-small&#34;</span>
+                                <span class=p>&gt;&lt;/</span><span class=nt>lightning-icon</span><span class=p>&gt;</span>
+                                <span class=p>&lt;</span><span class=nt>span</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-assistive-text&#34;</span><span class=p>&gt;</span>Clip/Wrap Text<span class=p>&lt;/</span><span class=nt>span</span><span class=p>&gt;</span>
+                            <span class=p>&lt;/</span><span class=nt>button</span><span class=p>&gt;</span>
+                        <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+
+                        <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-page-header__control&#34;</span><span class=p>&gt;</span>
+                            <span class=p>&lt;</span><span class=nt>button</span>
+                                <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-button slds-button_icon slds-button_icon-border-filled&#34;</span>
+                                <span class=na>title</span><span class=o>=</span><span class=s>&#34;Refresh List&#34;</span>
+                                <span class=na>onclick</span><span class=o>=</span><span class=s>{handleRefreshList}</span>
+                            <span class=p>&gt;</span>
+                                <span class=p>&lt;</span><span class=nt>lightning-icon</span> <span class=na>icon-name</span><span class=o>=</span><span class=s>&#34;utility:refresh&#34;</span> <span class=na>alternative-text</span><span class=o>=</span><span class=s>&#34;Refresh List&#34;</span> <span class=na>size</span><span class=o>=</span><span class=s>&#34;xx-small&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>lightning-icon</span><span class=p>&gt;</span>
+                                <span class=p>&lt;</span><span class=nt>span</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-assistive-text&#34;</span><span class=p>&gt;</span>Refresh List<span class=p>&lt;/</span><span class=nt>span</span><span class=p>&gt;</span>
+                            <span class=p>&lt;/</span><span class=nt>button</span><span class=p>&gt;</span>
+                        <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+
+                        <span class=p>&lt;</span><span class=nt>template</span> <span class=na>if:true</span><span class=o>=</span><span class=s>{showNewButton}</span><span class=p>&gt;</span>
+                            <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-page-header__control&#34;</span><span class=p>&gt;</span>
+                                <span class=p>&lt;</span><span class=nt>ul</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-button-group-list&#34;</span><span class=p>&gt;</span>
+                                    <span class=p>&lt;</span><span class=nt>li</span><span class=p>&gt;</span>
+                                        <span class=p>&lt;</span><span class=nt>lightning-button</span> <span class=na>variant</span><span class=o>=</span><span class=s>&#34;neutral&#34;</span> <span class=na>label</span><span class=o>=</span><span class=s>&#34;New&#34;</span> <span class=na>onclick</span><span class=o>=</span><span class=s>{navigateToNewRecordPage}</span><span class=p>&gt;&lt;/</span><span class=nt>lightning-button</span><span class=p>&gt;</span>
+                                    <span class=p>&lt;/</span><span class=nt>li</span><span class=p>&gt;</span>
+                                <span class=p>&lt;/</span><span class=nt>ul</span><span class=p>&gt;</span>
+                            <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+                        <span class=p>&lt;/</span><span class=nt>template</span><span class=p>&gt;</span>
+                        
+                    <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+                <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+            <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+            <span class=p>&lt;</span><span class=nt>template</span> <span class=na>if:true</span><span class=o>=</span><span class=s>{showListMeta}</span><span class=p>&gt;</span>
+                <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-page-header__row&#34;</span><span class=p>&gt;</span>
+                    <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-page-header__col-meta&#34;</span><span class=p>&gt;</span>
+                        <span class=p>&lt;</span><span class=nt>p</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-page-header__meta-text related-list-meta&#34;</span><span class=p>&gt;</span>{recordCountMeta} items • Sorted by {sortedByFieldLabel}<span class=p>&lt;/</span><span class=nt>p</span><span class=p>&gt;</span>
+                    <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+                <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+            <span class=p>&lt;/</span><span class=nt>template</span><span class=p>&gt;</span>
+        <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+
+        <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;related-list-body&#34;</span><span class=p>&gt;</span>
+            <span class=p>&lt;</span><span class=nt>template</span> <span class=na>if:true</span><span class=o>=</span><span class=s>{showLoading}</span><span class=p>&gt;</span>
+                <span class=p>&lt;</span><span class=nt>lightning-spinner</span> <span class=na>alternative-text</span><span class=o>=</span><span class=s>&#34;Loading&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>lightning-spinner</span><span class=p>&gt;</span>
+            <span class=p>&lt;/</span><span class=nt>template</span><span class=p>&gt;</span>
+            <span class=p>&lt;</span><span class=nt>c-custom-datatable</span>
+                <span class=na>key-field</span><span class=o>=</span><span class=s>&#34;id&#34;</span>
+                <span class=na>columns</span><span class=o>=</span><span class=s>{dataTableColumns}</span>
+                <span class=na>data</span><span class=o>=</span><span class=s>{notes}</span>
+                <span class=na>hide-checkbox-column</span><span class=o>=</span><span class=s>&#34;true&#34;</span>
+                <span class=na>sorted-direction</span><span class=o>=</span><span class=s>{sortDirection}</span>
+                <span class=na>sorted-by</span><span class=o>=</span><span class=s>{sortedBy}</span>
+                <span class=na>onsort</span><span class=o>=</span><span class=s>{handleSort}</span>
+                <span class=na>enable-infinite-loading</span>
+                <span class=na>onloadmore</span><span class=o>=</span><span class=s>{handleLoadMore}</span>
+                <span class=na>load-more-offset</span><span class=o>=</span><span class=s>&#34;10&#34;</span>
+                <span class=na>show-row-number-column</span><span class=o>=</span><span class=s>&#34;true&#34;</span>
+            <span class=p>&gt;</span>
+            <span class=p>&lt;/</span><span class=nt>c-custom-datatable</span><span class=p>&gt;</span>
+            <span class=p>&lt;</span><span class=nt>template</span> <span class=na>if:true</span><span class=o>=</span><span class=s>{showEmptyMessage}</span><span class=p>&gt;</span>
+                <span class=p>&lt;</span><span class=nt>div</span> <span class=na>style</span><span class=o>=</span><span class=s>&#34;height: 10vh; background: #f3f3f3&#34;</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;slds-align_absolute-center&#34;</span><span class=p>&gt;</span>
+                    <span class=p>&lt;</span><span class=nt>p</span><span class=p>&gt;</span>
+                        <span class=p>&lt;</span><span class=nt>template</span> <span class=na>if:false</span><span class=o>=</span><span class=s>{unsupportedListview}</span><span class=p>&gt;</span>No items to display<span class=p>&lt;/</span><span class=nt>template</span><span class=p>&gt;</span>
+                        <span class=p>&lt;</span><span class=nt>template</span> <span class=na>if:true</span><span class=o>=</span><span class=s>{unsupportedListview}</span><span class=p>&gt;</span>Unsupported listview. Please review the component&#39;s design attributes.<span class=p>&lt;/</span><span class=nt>template</span><span class=p>&gt;</span>
+                    <span class=p>&lt;/</span><span class=nt>p</span><span class=p>&gt;</span>
+                <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+            <span class=p>&lt;/</span><span class=nt>template</span><span class=p>&gt;</span>
+        <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+    <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+<span class=p>&lt;/</span><span class=nt>template</span><span class=p>&gt;</span>
+</code></pre></div><p><strong>customRelatedList.css</strong></p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=p>.</span><span class=nc>related-list-header</span> <span class=p>{</span>
+    <span class=k>border-bottom-left-radius</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span>
+    <span class=k>border-bottom-right-radius</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span>
+    <span class=k>border-bottom</span><span class=p>:</span> <span class=mi>1</span><span class=kt>px</span> <span class=kc>solid</span> <span class=nb>rgb</span><span class=p>(</span><span class=mi>201</span><span class=p>,</span> <span class=mi>201</span><span class=p>,</span> <span class=mi>201</span><span class=p>);</span>
+<span class=p>}</span>
+
+<span class=p>.</span><span class=nc>related-list-title</span> <span class=p>{</span>
+    <span class=k>font-size</span><span class=p>:</span> <span class=mi>1</span><span class=kt>rem</span><span class=p>;</span>
+    <span class=k>position</span><span class=p>:</span> <span class=kc>relative</span><span class=p>;</span>
+    <span class=k>top</span><span class=p>:</span> <span class=mi>2</span><span class=kt>px</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=p>.</span><span class=nc>related-list-meta</span> <span class=p>{</span>
+    <span class=k>font-size</span><span class=p>:</span> <span class=mf>0.8</span><span class=kt>rem</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=p>.</span><span class=nc>related-list-body</span> <span class=p>{</span>
+    <span class=k>position</span><span class=p>:</span> <span class=kc>relative</span><span class=p>;</span>
+    <span class=k>min-height</span><span class=p>:</span> <span class=mi>10</span><span class=kt>vh</span><span class=p>;</span>
+    <span class=k>max-width</span><span class=p>:</span> <span class=mi>100</span><span class=kt>%</span><span class=p>;</span>
+    <span class=k>overflow-x</span><span class=p>:</span> <span class=kc>auto</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=p>.</span><span class=nc>setings-down-arrow</span> <span class=p>{</span>
+    <span class=nv>--lwc-squareIconXxSmallContent</span><span class=p>:</span> <span class=mf>0.6</span><span class=kt>rem</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div><p><strong>customRelatedList.js</strong></p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=cm>/* eslint-disable @lwc/lwc/no-async-operation */</span>
+<span class=cm>/* eslint-disable @lwc/lwc/no-inner-html */</span>
+<span class=kr>import</span> <span class=p>{</span> <span class=nx>LightningElement</span><span class=p>,</span> <span class=nx>wire</span><span class=p>,</span> <span class=nx>api</span> <span class=p>}</span> <span class=nx>from</span> <span class=s2>&#34;lwc&#34;</span><span class=p>;</span>
+<span class=kr>import</span> <span class=p>{</span> <span class=nx>getRecord</span><span class=p>,</span> <span class=nx>getFieldValue</span> <span class=p>}</span> <span class=nx>from</span> <span class=s2>&#34;lightning/uiRecordApi&#34;</span><span class=p>;</span>
+<span class=kr>import</span> <span class=p>{</span> <span class=nx>getRelatedListInfo</span><span class=p>,</span> <span class=nx>getRelatedListRecords</span> <span class=p>}</span> <span class=nx>from</span> <span class=s2>&#34;lightning/uiRelatedListApi&#34;</span><span class=p>;</span>
+<span class=kr>import</span> <span class=p>{</span> <span class=nx>NavigationMixin</span> <span class=p>}</span> <span class=nx>from</span> <span class=s2>&#34;lightning/navigation&#34;</span><span class=p>;</span>
+<span class=kr>import</span> <span class=p>{</span> <span class=nx>encodeDefaultFieldValues</span> <span class=p>}</span> <span class=nx>from</span> <span class=s2>&#34;lightning/pageReferenceUtils&#34;</span><span class=p>;</span>
+<span class=kr>import</span> <span class=p>{</span> <span class=nx>refreshGraphQL</span> <span class=p>}</span> <span class=nx>from</span> <span class=s2>&#34;lightning/uiGraphQLApi&#34;</span><span class=p>;</span>
+
+<span class=kr>export</span> <span class=k>default</span> <span class=kr>class</span> <span class=nx>CustomNotesRelatedList</span> <span class=kr>extends</span> <span class=nx>NavigationMixin</span><span class=p>(</span><span class=nx>LightningElement</span><span class=p>)</span> <span class=p>{</span>
+    <span class=err>@</span><span class=nx>api</span> <span class=nx>recordId</span><span class=p>;</span>
+    <span class=err>@</span><span class=nx>api</span> <span class=nx>objectApiName</span><span class=p>;</span>
+    <span class=nx>notes</span><span class=p>;</span>
+    <span class=nx>wiredNotesResult</span><span class=p>;</span>
+    <span class=nx>relatedListColumns</span><span class=p>;</span> <span class=c1>// API response columns
+</span><span class=c1></span>    <span class=nx>dataTable</span><span class=p>;</span>
+    <span class=nx>dataTableColumns</span><span class=p>;</span> <span class=c1>// Datatable columns
+</span><span class=c1></span>    <span class=nx>dataTableColumnsMap</span><span class=p>;</span>
+    <span class=nx>relatedListFields</span><span class=p>;</span>
+    <span class=nx>lookupField</span><span class=p>;</span>
+
+    <span class=nx>pageToken</span><span class=p>;</span>
+    <span class=nx>currentPageToken</span><span class=p>;</span>
+    <span class=nx>nextPageToken</span><span class=p>;</span>
+
+    <span class=err>@</span><span class=nx>api</span> <span class=nx>iconName</span><span class=p>;</span>
+    <span class=err>@</span><span class=nx>api</span> <span class=nx>pRelatedListTitle</span><span class=p>;</span>
+    <span class=nx>relatedListTitle</span><span class=p>;</span>
+    <span class=err>@</span><span class=nx>api</span> <span class=nx>pNotesRelatedList</span><span class=p>;</span>
+    <span class=nx>notesRelatedList</span><span class=p>;</span>
+    <span class=err>@</span><span class=nx>api</span> <span class=nx>pNoteObjectApiName</span><span class=p>;</span>
+    <span class=nx>noteObjectApiName</span><span class=p>;</span>
+    <span class=err>@</span><span class=nx>api</span> <span class=nx>pNotesFields</span><span class=p>;</span>
+    <span class=nx>notesFields</span><span class=p>;</span>
+    <span class=err>@</span><span class=nx>api</span> <span class=nx>pDefaultSortedBy</span><span class=p>;</span>
+    <span class=nx>sortedBy</span><span class=p>;</span>
+    <span class=err>@</span><span class=nx>api</span> <span class=nx>pDefaultSortDirection</span><span class=p>;</span>
+    <span class=nx>sortDirection</span><span class=p>;</span>
+    <span class=err>@</span><span class=nx>api</span> <span class=nx>pFilterText</span> <span class=o>=</span> <span class=s1>&#39;{ CreatedBy: { Name: { ne: &#34;System Batch Job&#34; } } }&#39;</span><span class=p>;</span>
+    <span class=nx>filterText</span><span class=p>;</span>
+    <span class=err>@</span><span class=nx>api</span> <span class=nx>pPageSize</span><span class=p>;</span>
+    <span class=nx>pageSize</span><span class=p>;</span>
+    <span class=err>@</span><span class=nx>api</span> <span class=nx>showNewButton</span><span class=p>;</span>
+
+    <span class=nx>showLoading1</span> <span class=o>=</span> <span class=kc>true</span><span class=p>;</span>
+    <span class=nx>showLoading2</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+    <span class=nx>wrapText</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+    <span class=nx>styleAdded</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+    <span class=nx>forceRefresh</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+    <span class=nx>showClipWrapButton</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+    <span class=nx>unsupportedListview</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+
+    <span class=nx>maxCellheight</span> <span class=o>=</span> <span class=mi>150</span><span class=p>;</span> <span class=c1>// in (px)
+</span><span class=c1></span>    <span class=nx>maxTableHeight</span> <span class=o>=</span> <span class=mi>60</span><span class=p>;</span> <span class=c1>// in (vh)
+</span><span class=c1></span>    <span class=nx>cellScrollbarWidth</span> <span class=o>=</span> <span class=mi>9</span><span class=p>;</span> <span class=c1>// in (px)
+</span><span class=c1></span>
+    <span class=nx>connectedCallback</span><span class=p>()</span> <span class=p>{</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>relatedListTitle</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>pRelatedListTitle</span><span class=p>;</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>notesRelatedList</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>pNotesRelatedList</span><span class=p>;</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>parentObjectApiName</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>pParentObjectApiName</span><span class=p>;</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>noteObjectApiName</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>pNoteObjectApiName</span><span class=p>;</span> 
+        <span class=k>this</span><span class=p>.</span><span class=nx>notesFields</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>pNotesFields</span><span class=p>.</span><span class=nx>split</span><span class=p>(</span><span class=s2>&#34;,&#34;</span><span class=p>).</span><span class=nx>map</span><span class=p>((</span><span class=nx>x</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=k>this</span><span class=p>.</span><span class=nx>pNoteObjectApiName</span> <span class=o>+</span> <span class=s1>&#39;.&#39;</span> <span class=o>+</span> <span class=nx>x</span><span class=p>.</span><span class=nx>trim</span><span class=p>());</span> 
+        <span class=k>this</span><span class=p>.</span><span class=nx>sortedBy</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>pDefaultSortedBy</span><span class=p>;</span> 
+        <span class=k>this</span><span class=p>.</span><span class=nx>sortDirection</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>pDefaultSortDirection</span><span class=p>;</span> 
+        <span class=k>this</span><span class=p>.</span><span class=nx>filterText</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>pFilterText</span><span class=p>;</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>pageSize</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>pPageSize</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=nx>renderedCallback</span><span class=p>()</span> <span class=p>{</span>
+        <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=k>this</span><span class=p>.</span><span class=nx>styleAdded</span><span class=p>)</span> <span class=k>this</span><span class=p>.</span><span class=nx>loadStyle</span><span class=p>();</span>
+    <span class=p>}</span>
+
+    <span class=nx>loadStyle</span><span class=p>()</span> <span class=p>{</span>
+        <span class=kd>let</span> <span class=nx>e</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>template</span><span class=p>.</span><span class=nx>querySelector</span><span class=p>(</span><span class=s2>&#34;.related-list-style-div&#34;</span><span class=p>);</span>
+        <span class=k>if</span> <span class=p>(</span><span class=nx>e</span><span class=p>)</span> <span class=p>{</span>
+            <span class=kd>let</span> <span class=nx>x</span> <span class=o>=</span> <span class=s2>&#34;&lt;style&gt;&#34;</span><span class=p>;</span>
+            <span class=c1>// Scrollable cell styles
+</span><span class=c1></span>            <span class=nx>x</span> <span class=o>+=</span> <span class=s2>&#34;.related-list-body tbody td span {  max-height: &#34;</span> <span class=o>+</span> <span class=k>this</span><span class=p>.</span><span class=nx>maxCellheight</span> <span class=o>+</span> <span class=s2>&#34;px !important;  overflow-y: auto !important;  white-space: normal !important;  word-wrap: break-word !important;}&#34;</span><span class=p>;</span>
+            <span class=c1>// Scrollable table styles
+</span><span class=c1></span>            <span class=nx>x</span> <span class=o>+=</span> <span class=s2>&#34;.related-list-body div.slds-scrollable_y { max-height: &#34;</span><span class=o>+</span> <span class=k>this</span><span class=p>.</span><span class=nx>maxTableHeight</span> <span class=o>+</span><span class=s2>&#34;vh !important; }&#34;</span><span class=p>;</span>
+            <span class=c1>// Scroll bar styles (only for cell scroll)
+</span><span class=c1></span>            <span class=nx>x</span> <span class=o>+=</span> <span class=s2>&#34;.related-list-body tbody td span::-webkit-scrollbar { width: &#34;</span> <span class=o>+</span> <span class=k>this</span><span class=p>.</span><span class=nx>cellScrollbarWidth</span> <span class=o>+</span> <span class=s2>&#34;px; height: &#34;</span> <span class=o>+</span> <span class=k>this</span><span class=p>.</span><span class=nx>cellScrollbarWidth</span> <span class=o>+</span> <span class=s2>&#34;px; }.related-list-body tbody td span::-webkit-scrollbar-track {border: 1px solid rgb(196, 196, 196);border-radius: 10px;}.related-list-body tbody td span::-webkit-scrollbar-thumb {background: #949494;border-radius: 10px;}&#34;</span><span class=p>;</span>
+            <span class=c1>// For accurate calculation of row numbers
+</span><span class=c1></span>            <span class=nx>x</span> <span class=o>+=</span> <span class=s2>&#34;.related-list-body table &gt; tbody &gt; tr.slds-hint-parent { counter-increment: row-number1; } .related-list-body .slds-table .slds-row-number:after { content: counter(row-number1); }&#34;</span><span class=p>;</span>
+            <span class=c1>// To disable row hover
+</span><span class=c1></span>            <span class=nx>x</span> <span class=o>+=</span> <span class=s2>&#34;.related-list-body tr:hover &gt; * { background-color: #fff !important; }&#34;</span><span class=p>;</span>
+            <span class=nx>x</span> <span class=o>+=</span> <span class=s2>&#34;&lt;/style&gt;&#34;</span><span class=p>;</span>
+            <span class=nx>e</span><span class=p>.</span><span class=nx>innerHTML</span> <span class=o>=</span> <span class=nx>x</span><span class=p>;</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>styleAdded</span> <span class=o>=</span> <span class=kc>true</span><span class=p>;</span>
+        <span class=p>}</span>
+        <span class=c1>// this.template.querySelector(&#34;.related-list-body tbody&#34;).classList.add(&#34;c-custom-counter&#34;);
+</span><span class=c1></span>    <span class=p>}</span>
+
+    <span class=err>@</span><span class=nx>wire</span><span class=p>(</span><span class=nx>getRecord</span><span class=p>,</span> <span class=p>{</span> <span class=nx>recordId</span><span class=o>:</span> <span class=s2>&#34;$recordId&#34;</span><span class=p>,</span> <span class=nx>fields</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;Case.RecordTypeId&#34;</span><span class=p>]</span> <span class=p>})</span>
+    <span class=nx>caseRecord</span><span class=p>;</span>
+
+    <span class=nx>get</span> <span class=nx>recordTypeId</span><span class=p>()</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=nx>getFieldValue</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>caseRecord</span><span class=p>.</span><span class=nx>data</span><span class=p>,</span> <span class=s2>&#34;Case.RecordTypeId&#34;</span><span class=p>);</span>
+    <span class=p>}</span>
+
+    <span class=nx>get</span> <span class=nx>showLoading</span><span class=p>()</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>showLoading1</span> <span class=o>||</span> <span class=k>this</span><span class=p>.</span><span class=nx>showLoading2</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=err>@</span><span class=nx>wire</span><span class=p>(</span><span class=nx>getRelatedListInfo</span><span class=p>,</span> <span class=p>{</span>
+        <span class=nx>parentObjectApiName</span><span class=o>:</span> <span class=s2>&#34;$objectApiName&#34;</span><span class=p>,</span>
+        <span class=nx>relatedListId</span><span class=o>:</span> <span class=s2>&#34;$notesRelatedList&#34;</span><span class=p>,</span>
+        <span class=nx>optionalFields</span><span class=o>:</span> <span class=s2>&#34;$notesFields&#34;</span><span class=p>,</span>
+        <span class=nx>restrictColumnsToLayout</span><span class=o>:</span> <span class=kc>false</span>
+    <span class=p>})</span>
+    <span class=nx>wiredListInfo</span><span class=p>({</span> <span class=nx>error</span><span class=p>,</span> <span class=nx>data</span> <span class=p>})</span> <span class=p>{</span>
+        <span class=k>if</span> <span class=p>(</span><span class=nx>data</span><span class=p>)</span> <span class=p>{</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>relatedListColumns</span> <span class=o>=</span> <span class=nx>data</span><span class=p>.</span><span class=nx>displayColumns</span><span class=p>;</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>lookupField</span> <span class=o>=</span> <span class=nx>data</span><span class=p>.</span><span class=nx>fieldApiName</span><span class=p>;</span>
+            <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>(</span><span class=nx>data</span><span class=p>,</span> <span class=kc>null</span><span class=p>,</span> <span class=mi>2</span><span class=p>));</span>
+            <span class=c1>// to sort the columns based on the order of fields in the pNotesFields (when restrictColumnsToLayout is false, the order of fields in the relatedListColumns is not guaranteed to be the same as the order of fields in the pNotesFields. Hence the sorting is necessary)
+</span><span class=c1></span>            <span class=kd>let</span> <span class=nx>columnMap</span> <span class=o>=</span> <span class=p>{};</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>relatedListColumns</span><span class=p>.</span><span class=nx>forEach</span><span class=p>((</span><span class=nx>col</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+                <span class=nx>columnMap</span><span class=p>[</span><span class=nx>col</span><span class=p>.</span><span class=nx>fieldApiName</span><span class=p>]</span> <span class=o>=</span> <span class=nx>col</span><span class=p>;</span>
+            <span class=p>});</span>
+            <span class=kd>let</span> <span class=nx>columns</span> <span class=o>=</span> <span class=p>[];</span>
+            <span class=kd>let</span> <span class=nx>listOfFields</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>pNotesFields</span><span class=p>.</span><span class=nx>split</span><span class=p>(</span><span class=s2>&#34;,&#34;</span><span class=p>).</span><span class=nx>map</span><span class=p>((</span><span class=nx>field</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>field</span><span class=p>.</span><span class=nx>trim</span><span class=p>());</span>
+            <span class=nx>listOfFields</span><span class=p>.</span><span class=nx>forEach</span><span class=p>((</span><span class=nx>field</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+                <span class=k>if</span> <span class=p>(</span><span class=nx>columnMap</span><span class=p>[</span><span class=nx>field</span><span class=p>])</span> <span class=nx>columns</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=nx>columnMap</span><span class=p>[</span><span class=nx>field</span><span class=p>]);</span>
+            <span class=p>});</span>
+
+            <span class=c1>// preparing the columns for the datatable
+</span><span class=c1></span>            <span class=k>this</span><span class=p>.</span><span class=nx>dataTableColumns</span> <span class=o>=</span> <span class=nx>columns</span><span class=p>.</span><span class=nx>map</span><span class=p>((</span><span class=nx>col</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=k>this</span><span class=p>.</span><span class=nx>prepareDatatableColumn</span><span class=p>(</span><span class=nx>col</span><span class=p>));</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>dataTableColumnsMap</span> <span class=o>=</span> <span class=p>{};</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>dataTableColumns</span><span class=p>.</span><span class=nx>forEach</span><span class=p>((</span><span class=nx>col</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+                <span class=k>this</span><span class=p>.</span><span class=nx>dataTableColumnsMap</span><span class=p>[</span><span class=nx>col</span><span class=p>.</span><span class=nx>fieldName</span><span class=p>]</span> <span class=o>=</span> <span class=nx>col</span><span class=p>;</span>
+            <span class=p>});</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>fieldApiNames</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>relatedListColumns</span><span class=p>.</span><span class=nx>map</span><span class=p>((</span><span class=nx>col</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>col</span><span class=p>.</span><span class=nx>fieldApiName</span><span class=p>);</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>relatedListFields</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>fieldApiNames</span><span class=p>.</span><span class=nx>map</span><span class=p>((</span><span class=nx>col</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=k>this</span><span class=p>.</span><span class=nx>noteObjectApiName</span> <span class=o>+</span> <span class=s2>&#34;.&#34;</span> <span class=o>+</span> <span class=nx>col</span><span class=p>);</span>
+        <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=nx>error</span><span class=p>)</span> <span class=p>{</span>
+            <span class=nx>console</span><span class=p>.</span><span class=nx>error</span><span class=p>(</span><span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>(</span><span class=nx>error</span><span class=p>,</span> <span class=kc>null</span><span class=p>,</span> <span class=mi>2</span><span class=p>));</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>showLoading1</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>unsupportedListview</span> <span class=o>=</span> <span class=kc>true</span><span class=p>;</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+
+    <span class=nx>prepareDatatableColumn</span><span class=p>(</span><span class=nx>col</span><span class=p>)</span> <span class=p>{</span>
+        <span class=kd>let</span> <span class=nx>x</span> <span class=o>=</span> <span class=p>{</span>
+            <span class=nx>label</span><span class=o>:</span> <span class=nx>col</span><span class=p>.</span><span class=nx>label</span><span class=p>,</span>
+            <span class=nx>fieldName</span><span class=o>:</span> <span class=nx>col</span><span class=p>.</span><span class=nx>fieldApiName</span><span class=p>,</span>
+            <span class=nx>sortable</span><span class=o>:</span> <span class=nx>col</span><span class=p>.</span><span class=nx>sortable</span><span class=p>,</span>
+            <span class=nx>type</span><span class=o>:</span> <span class=nx>col</span><span class=p>.</span><span class=nx>dataType</span>
+        <span class=p>};</span>
+
+        <span class=k>if</span> <span class=p>(</span><span class=nx>col</span><span class=p>.</span><span class=nx>dataType</span> <span class=o>===</span> <span class=s2>&#34;textarea&#34;</span><span class=p>)</span> <span class=p>{</span>
+            <span class=nx>x</span><span class=p>.</span><span class=nx>type</span> <span class=o>=</span> <span class=s2>&#34;richText&#34;</span><span class=p>;</span>
+            <span class=nx>x</span><span class=p>.</span><span class=nx>wrapText</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+        <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=nx>col</span><span class=p>.</span><span class=nx>dataType</span> <span class=o>===</span> <span class=s2>&#34;boolean&#34;</span><span class=p>)</span> <span class=p>{</span>
+            <span class=nx>x</span><span class=p>.</span><span class=nx>initialWidth</span> <span class=o>=</span> <span class=mi>80</span><span class=p>;</span>
+        <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>isUrlCol</span><span class=p>(</span><span class=nx>col</span><span class=p>))</span> <span class=p>{</span>
+            <span class=nx>x</span><span class=p>.</span><span class=nx>type</span> <span class=o>=</span> <span class=s2>&#34;url&#34;</span><span class=p>;</span>
+            <span class=nx>x</span><span class=p>.</span><span class=nx>typeAttributes</span> <span class=o>=</span> <span class=p>{</span>
+                <span class=nx>label</span><span class=o>:</span> <span class=p>{</span> <span class=nx>fieldName</span><span class=o>:</span> <span class=nx>x</span><span class=p>.</span><span class=nx>fieldName</span> <span class=p>}</span>
+            <span class=p>};</span>
+            <span class=nx>x</span><span class=p>.</span><span class=nx>fieldName</span> <span class=o>=</span> <span class=nx>col</span><span class=p>.</span><span class=nx>lookupId</span> <span class=o>+</span> <span class=s2>&#34;_URL&#34;</span><span class=p>;</span>
+        <span class=p>}</span>
+        <span class=k>return</span> <span class=nx>x</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=nx>isUrlCol</span><span class=p>(</span><span class=nx>col</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=nx>col</span><span class=p>.</span><span class=nx>dataType</span> <span class=o>===</span> <span class=s2>&#34;string&#34;</span> <span class=o>&amp;&amp;</span> <span class=nx>col</span><span class=p>.</span><span class=nx>lookupId</span> <span class=o>!==</span> <span class=kc>null</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=nx>isNameCol</span><span class=p>(</span><span class=nx>col</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=nx>col</span><span class=p>.</span><span class=nx>dataType</span> <span class=o>===</span> <span class=s2>&#34;string&#34;</span> <span class=o>&amp;&amp;</span> <span class=nx>col</span><span class=p>.</span><span class=nx>lookupId</span> <span class=o>===</span> <span class=s2>&#34;Id&#34;</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=nx>isPicklistCol</span><span class=p>(</span><span class=nx>col</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=nx>col</span><span class=p>.</span><span class=nx>dataType</span> <span class=o>===</span> <span class=s2>&#34;picklist&#34;</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=nx>handleSort</span><span class=p>(</span><span class=nx>event</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>showLoading1</span> <span class=o>=</span> <span class=kc>true</span><span class=p>;</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>moveScrollbarToTop</span><span class=p>();</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>forceRefresh</span> <span class=o>=</span> <span class=kc>true</span><span class=p>;</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>sortedBy</span> <span class=o>=</span> <span class=nx>event</span><span class=p>.</span><span class=nx>detail</span><span class=p>.</span><span class=nx>fieldName</span><span class=p>;</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>sortDirection</span> <span class=o>=</span> <span class=nx>event</span><span class=p>.</span><span class=nx>detail</span><span class=p>.</span><span class=nx>sortDirection</span><span class=p>;</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>pageToken</span> <span class=o>=</span> <span class=kc>null</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=nx>get</span> <span class=nx>sortBy</span><span class=p>()</span> <span class=p>{</span>
+        <span class=kd>let</span> <span class=nx>x</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>noteObjectApiName</span> <span class=o>+</span> <span class=s2>&#34;.&#34;</span><span class=p>;</span>
+        <span class=kd>let</span> <span class=nx>z</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>dataTableColumnsMap</span> <span class=o>?</span> <span class=k>this</span><span class=p>.</span><span class=nx>dataTableColumnsMap</span><span class=p>[</span><span class=k>this</span><span class=p>.</span><span class=nx>sortedBy</span><span class=p>]</span> <span class=o>:</span> <span class=kc>null</span><span class=p>;</span>
+        <span class=nx>x</span> <span class=o>=</span> <span class=nx>z</span> <span class=o>&amp;&amp;</span> <span class=nx>z</span><span class=p>.</span><span class=nx>type</span> <span class=o>===</span> <span class=s2>&#34;url&#34;</span> <span class=o>?</span> <span class=nx>x</span> <span class=o>+</span> <span class=nx>z</span><span class=p>.</span><span class=nx>typeAttributes</span><span class=p>.</span><span class=nx>label</span><span class=p>.</span><span class=nx>fieldName</span> <span class=o>:</span> <span class=nx>x</span> <span class=o>+</span> <span class=k>this</span><span class=p>.</span><span class=nx>sortedBy</span><span class=p>;</span>
+        <span class=kd>let</span> <span class=nx>y</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>sortDirection</span> <span class=o>===</span> <span class=s2>&#34;asc&#34;</span> <span class=o>?</span> <span class=nx>x</span> <span class=o>:</span> <span class=s2>&#34;-&#34;</span> <span class=o>+</span> <span class=nx>x</span><span class=p>;</span>
+        <span class=k>return</span> <span class=p>[</span><span class=nx>y</span><span class=p>];</span>
+    <span class=p>}</span>
+
+    <span class=nx>get</span> <span class=nx>sortedByFieldLabel</span><span class=p>()</span> <span class=p>{</span>
+        <span class=kd>let</span> <span class=nx>z</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>dataTableColumnsMap</span> <span class=o>?</span> <span class=k>this</span><span class=p>.</span><span class=nx>dataTableColumnsMap</span><span class=p>[</span><span class=k>this</span><span class=p>.</span><span class=nx>sortedBy</span><span class=p>]</span> <span class=o>:</span> <span class=kc>null</span><span class=p>;</span>
+        <span class=k>return</span> <span class=nx>z</span> <span class=o>?</span> <span class=nx>z</span><span class=p>.</span><span class=nx>label</span> <span class=o>:</span> <span class=s2>&#34;&#34;</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=nx>prepareNote</span><span class=p>(</span><span class=nx>record</span><span class=p>)</span> <span class=p>{</span>
+        <span class=kd>let</span> <span class=nx>note</span> <span class=o>=</span> <span class=p>{};</span>
+        <span class=kd>function</span> <span class=nx>getLookupObjectName</span><span class=p>(</span><span class=nx>column</span><span class=p>)</span> <span class=p>{</span>
+            <span class=k>return</span> <span class=nx>column</span><span class=p>.</span><span class=nx>fieldApiName</span><span class=p>.</span><span class=nx>split</span><span class=p>(</span><span class=s2>&#34;.&#34;</span><span class=p>)[</span><span class=mi>0</span><span class=p>];</span>
+        <span class=p>}</span>
+        <span class=k>try</span> <span class=p>{</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>relatedListColumns</span><span class=p>.</span><span class=nx>forEach</span><span class=p>(</span>
+                <span class=kd>function</span> <span class=p>(</span><span class=nx>col</span><span class=p>)</span> <span class=p>{</span>
+                    <span class=kd>let</span> <span class=nx>field</span> <span class=o>=</span> <span class=nx>col</span><span class=p>.</span><span class=nx>fieldApiName</span><span class=p>;</span>
+                    <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>isUrlCol</span><span class=p>(</span><span class=nx>col</span><span class=p>))</span> <span class=p>{</span>
+                        <span class=nx>note</span><span class=p>[</span><span class=nx>field</span><span class=p>]</span> <span class=o>=</span> <span class=nx>field</span> <span class=k>in</span> <span class=nx>record</span><span class=p>.</span><span class=nx>fields</span> <span class=o>?</span> <span class=nx>record</span><span class=p>.</span><span class=nx>fields</span><span class=p>[</span><span class=nx>field</span><span class=p>].</span><span class=nx>value</span> <span class=o>:</span> <span class=nx>record</span><span class=p>.</span><span class=nx>fields</span><span class=p>[</span><span class=nx>getLookupObjectName</span><span class=p>(</span><span class=nx>col</span><span class=p>)].</span><span class=nx>displayValue</span><span class=p>;</span>
+                        <span class=nx>note</span><span class=p>[</span><span class=nx>col</span><span class=p>.</span><span class=nx>lookupId</span> <span class=o>+</span> <span class=s2>&#34;_URL&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=s2>&#34;/&#34;</span> <span class=o>+</span> <span class=nx>record</span><span class=p>.</span><span class=nx>fields</span><span class=p>[</span><span class=nx>getLookupObjectName</span><span class=p>(</span><span class=nx>col</span><span class=p>)].</span><span class=nx>value</span><span class=p>.</span><span class=nx>id</span><span class=p>;</span>
+                    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+                        <span class=kd>let</span> <span class=nx>v</span> <span class=o>=</span> <span class=nx>record</span><span class=p>.</span><span class=nx>fields</span><span class=p>[</span><span class=nx>field</span><span class=p>].</span><span class=nx>displayValue</span> <span class=o>?</span> <span class=nx>record</span><span class=p>.</span><span class=nx>fields</span><span class=p>[</span><span class=nx>field</span><span class=p>].</span><span class=nx>displayValue</span> <span class=o>:</span> <span class=nx>record</span><span class=p>.</span><span class=nx>fields</span><span class=p>[</span><span class=nx>field</span><span class=p>].</span><span class=nx>value</span><span class=p>;</span>
+                        <span class=nx>note</span><span class=p>[</span><span class=nx>field</span><span class=p>]</span> <span class=o>=</span> <span class=nx>v</span><span class=p>;</span>
+                    <span class=p>}</span>
+                <span class=p>}.</span><span class=nx>bind</span><span class=p>(</span><span class=k>this</span><span class=p>)</span>
+            <span class=p>);</span>
+        <span class=p>}</span> <span class=k>catch</span> <span class=p>(</span><span class=nx>error</span><span class=p>)</span> <span class=p>{</span>
+            <span class=nx>console</span><span class=p>.</span><span class=nx>error</span><span class=p>(</span><span class=nx>error</span><span class=p>);</span>
+        <span class=p>}</span>
+        
+        <span class=nx>note</span><span class=p>.</span><span class=nx>Id</span> <span class=o>=</span> <span class=nx>record</span><span class=p>.</span><span class=nx>id</span><span class=p>;</span>
+        <span class=nx>note</span><span class=p>.</span><span class=nx>Id_URL</span> <span class=o>=</span> <span class=s2>&#34;/&#34;</span> <span class=o>+</span> <span class=nx>record</span><span class=p>.</span><span class=nx>id</span><span class=p>;</span>
+        <span class=k>return</span> <span class=nx>note</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=err>@</span><span class=nx>wire</span><span class=p>(</span><span class=nx>getRelatedListRecords</span><span class=p>,</span> <span class=p>{</span>
+        <span class=nx>parentRecordId</span><span class=o>:</span> <span class=s2>&#34;$recordId&#34;</span><span class=p>,</span>
+        <span class=nx>relatedListId</span><span class=o>:</span> <span class=s2>&#34;$notesRelatedList&#34;</span><span class=p>,</span>
+        <span class=nx>fields</span><span class=o>:</span> <span class=s2>&#34;$relatedListFields&#34;</span><span class=p>,</span>
+        <span class=nx>sortBy</span><span class=o>:</span> <span class=s2>&#34;$sortBy&#34;</span><span class=p>,</span>
+        <span class=nx>pageSize</span><span class=o>:</span> <span class=s2>&#34;$pageSize&#34;</span><span class=p>,</span> <span class=c1>// max pageSize = 249; default = 50
+</span><span class=c1></span>        <span class=nx>pageToken</span><span class=o>:</span> <span class=s2>&#34;$pageToken&#34;</span><span class=p>,</span>
+        <span class=nx>where</span><span class=o>:</span> <span class=s2>&#34;$filterText&#34;</span>
+    <span class=p>})</span>
+    <span class=nx>wiredNotes</span><span class=p>(</span><span class=nx>result</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=k>this</span><span class=p>.</span><span class=nx>relatedListFields</span><span class=p>)</span> <span class=p>{</span>
+            <span class=k>return</span><span class=p>;</span>
+        <span class=p>}</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>wiredNotesResult</span> <span class=o>=</span> <span class=nx>result</span><span class=p>;</span>
+        <span class=kr>const</span> <span class=p>{</span> <span class=nx>error</span><span class=p>,</span> <span class=nx>data</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>result</span><span class=p>;</span>
+        <span class=k>if</span> <span class=p>(</span><span class=nx>data</span><span class=p>)</span> <span class=p>{</span>
+            <span class=kd>let</span> <span class=nx>x</span> <span class=o>=</span> <span class=p>[];</span>
+            <span class=nx>data</span><span class=p>.</span><span class=nx>records</span><span class=p>.</span><span class=nx>forEach</span><span class=p>((</span><span class=nx>record</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+                <span class=nx>x</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>prepareNote</span><span class=p>(</span><span class=nx>record</span><span class=p>));</span>
+            <span class=p>});</span>
+            <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>currentPageToken</span> <span class=o>&amp;&amp;</span> <span class=k>this</span><span class=p>.</span><span class=nx>currentPageToken</span> <span class=o>===</span> <span class=nx>data</span><span class=p>.</span><span class=nx>previousPageToken</span><span class=p>)</span> <span class=p>{</span>
+                <span class=kd>let</span> <span class=nx>z</span> <span class=o>=</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>notes</span><span class=p>));</span>
+                <span class=nb>Array</span><span class=p>.</span><span class=nx>prototype</span><span class=p>.</span><span class=nx>push</span><span class=p>.</span><span class=nx>apply</span><span class=p>(</span><span class=nx>z</span><span class=p>,</span> <span class=nx>x</span><span class=p>);</span>
+                <span class=k>this</span><span class=p>.</span><span class=nx>notes</span> <span class=o>=</span> <span class=nx>z</span><span class=p>;</span>
+            <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+                <span class=k>this</span><span class=p>.</span><span class=nx>notes</span> <span class=o>=</span> <span class=nx>x</span><span class=p>;</span>
+            <span class=p>}</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>currentPageToken</span> <span class=o>=</span> <span class=nx>data</span><span class=p>.</span><span class=nx>currentPageToken</span><span class=p>;</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>nextPageToken</span> <span class=o>=</span> <span class=nx>data</span><span class=p>.</span><span class=nx>nextPageToken</span><span class=p>;</span>
+            <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>forceRefresh</span><span class=p>)</span> <span class=k>this</span><span class=p>.</span><span class=nx>refreshData</span><span class=p>();</span>
+            <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>dataTable</span><span class=p>)</span> <span class=k>this</span><span class=p>.</span><span class=nx>dataTable</span><span class=p>.</span><span class=nx>isLoading</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>showLoading1</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+        <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=nx>error</span><span class=p>)</span> <span class=p>{</span>
+            <span class=nx>console</span><span class=p>.</span><span class=nx>error</span><span class=p>(</span><span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>(</span><span class=nx>error</span><span class=p>));</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>notes</span> <span class=o>=</span> <span class=p>[];</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>showLoading1</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+
+    <span class=nx>get</span> <span class=nx>recordCount</span><span class=p>()</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>notes</span> <span class=o>?</span> <span class=k>this</span><span class=p>.</span><span class=nx>notes</span><span class=p>.</span><span class=nx>length</span> <span class=o>:</span> <span class=mi>0</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=nx>get</span> <span class=nx>hasNotes</span><span class=p>()</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>recordCount</span> <span class=o>!==</span> <span class=mi>0</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=nx>get</span> <span class=nx>showEmptyMessage</span><span class=p>()</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=o>!</span><span class=k>this</span><span class=p>.</span><span class=nx>showLoading</span> <span class=o>&amp;&amp;</span> <span class=o>!</span><span class=k>this</span><span class=p>.</span><span class=nx>hasNotes</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=nx>get</span> <span class=nx>showListMeta</span><span class=p>()</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>recordCount</span> <span class=o>&gt;</span> <span class=mi>1</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=nx>get</span> <span class=nx>recordCountMeta</span><span class=p>()</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>nextPageToken</span> <span class=o>?</span> <span class=k>this</span><span class=p>.</span><span class=nx>recordCount</span> <span class=o>+</span> <span class=s2>&#34;+&#34;</span> <span class=o>:</span> <span class=k>this</span><span class=p>.</span><span class=nx>recordCount</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=nx>get</span> <span class=nx>relatedListTitleWithCount</span><span class=p>()</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>relatedListTitle</span> <span class=o>+</span> <span class=s2>&#34; (&#34;</span> <span class=o>+</span> <span class=k>this</span><span class=p>.</span><span class=nx>recordCountMeta</span> <span class=o>+</span> <span class=s2>&#34;)&#34;</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=nx>handleClipWrap</span><span class=p>()</span> <span class=p>{</span>
+        <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>dataTableColumns</span><span class=p>)</span> <span class=p>{</span>
+            <span class=kd>let</span> <span class=nx>x</span> <span class=o>=</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>dataTableColumns</span><span class=p>));</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>wrapText</span> <span class=o>=</span> <span class=o>!</span><span class=k>this</span><span class=p>.</span><span class=nx>wrapText</span><span class=p>;</span>
+            <span class=nx>x</span><span class=p>.</span><span class=nx>forEach</span><span class=p>((</span><span class=nx>col</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+                <span class=nx>col</span><span class=p>.</span><span class=nx>wrapText</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>wrapText</span><span class=p>;</span>
+            <span class=p>});</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>dataTableColumns</span> <span class=o>=</span> <span class=nx>x</span><span class=p>;</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+
+    <span class=nx>handleRefreshList</span><span class=p>()</span> <span class=p>{</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>moveScrollbarToTop</span><span class=p>();</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>showLoading2</span> <span class=o>=</span> <span class=kc>true</span><span class=p>;</span>
+        <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>pageToken</span><span class=p>)</span> <span class=p>{</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>pageToken</span> <span class=o>=</span> <span class=kc>null</span><span class=p>;</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>currentPageToken</span> <span class=o>=</span> <span class=kc>null</span><span class=p>;</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>forceRefresh</span> <span class=o>=</span> <span class=kc>true</span><span class=p>;</span>
+        <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>refreshData</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>wiredNotesResult</span><span class=p>);</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+
+    <span class=nx>moveScrollbarToTop</span><span class=p>()</span> <span class=p>{</span>
+        <span class=k>try</span> <span class=p>{</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>template</span><span class=p>.</span><span class=nx>querySelector</span><span class=p>(</span><span class=s2>&#34;c-custom-datatable&#34;</span><span class=p>).</span><span class=nx>customScrollToTop</span><span class=p>();</span>
+        <span class=p>}</span> <span class=k>catch</span> <span class=p>(</span><span class=nx>error</span><span class=p>)</span> <span class=p>{</span>
+            <span class=nx>console</span><span class=p>.</span><span class=nx>error</span><span class=p>(</span><span class=nx>error</span><span class=p>);</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+
+    <span class=kr>async</span> <span class=nx>refreshData</span><span class=p>()</span> <span class=p>{</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>showLoading2</span> <span class=o>=</span> <span class=kc>true</span><span class=p>;</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>forceRefresh</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+        <span class=kr>await</span> <span class=nx>refreshGraphQL</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>wiredNotesResult</span><span class=p>);</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>showLoading2</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=nx>handleLoadMore</span><span class=p>(</span><span class=nx>event</span><span class=p>)</span> <span class=p>{</span>
+        <span class=nx>event</span><span class=p>.</span><span class=nx>preventDefault</span><span class=p>();</span>
+        <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>nextPageToken</span><span class=p>)</span> <span class=p>{</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>dataTable</span> <span class=o>=</span> <span class=nx>event</span><span class=p>.</span><span class=nx>target</span><span class=p>;</span>
+            <span class=nx>event</span><span class=p>.</span><span class=nx>target</span><span class=p>.</span><span class=nx>isLoading</span> <span class=o>=</span> <span class=kc>true</span><span class=p>;</span>
+            <span class=k>this</span><span class=p>.</span><span class=nx>loadMoreData</span><span class=p>();</span>
+            <span class=c1>// event.target.isLoading = false;
+</span><span class=c1></span>        <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+            <span class=nx>event</span><span class=p>.</span><span class=nx>target</span><span class=p>.</span><span class=nx>enableInfiniteLoading</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+
+    <span class=nx>loadMoreData</span><span class=p>()</span> <span class=p>{</span>
+        <span class=c1>// comment the below line when infinite loading is enabled
+</span><span class=c1></span>        <span class=c1>// this.showLoading1 = true;
+</span><span class=c1></span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>pageToken</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>nextPageToken</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=nx>navigateToNewRecordPage</span><span class=p>()</span> <span class=p>{</span>
+        <span class=kd>let</span> <span class=nx>x</span> <span class=o>=</span> <span class=p>{};</span>
+        <span class=nx>x</span><span class=p>[</span><span class=k>this</span><span class=p>.</span><span class=nx>lookupField</span><span class=p>]</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>recordId</span><span class=p>;</span>
+        <span class=kr>const</span> <span class=nx>defaultValues</span> <span class=o>=</span> <span class=nx>encodeDefaultFieldValues</span><span class=p>(</span><span class=nx>x</span><span class=p>);</span>
+        <span class=k>try</span> <span class=p>{</span>
+            <span class=k>this</span><span class=p>[</span><span class=nx>NavigationMixin</span><span class=p>.</span><span class=nx>Navigate</span><span class=p>]({</span>
+                <span class=nx>type</span><span class=o>:</span> <span class=s2>&#34;standard__objectPage&#34;</span><span class=p>,</span>
+                <span class=nx>attributes</span><span class=o>:</span> <span class=p>{</span>
+                    <span class=nx>objectApiName</span><span class=o>:</span> <span class=k>this</span><span class=p>.</span><span class=nx>noteObjectApiName</span><span class=p>,</span>
+                    <span class=nx>actionName</span><span class=o>:</span> <span class=s2>&#34;new&#34;</span>
+                <span class=p>},</span>
+                <span class=nx>state</span><span class=o>:</span> <span class=p>{</span>
+                    <span class=nx>nooverride</span><span class=o>:</span> <span class=s2>&#34;1&#34;</span><span class=p>,</span>
+                    <span class=nx>navigationLocation</span><span class=o>:</span> <span class=s2>&#34;RELATED_LIST&#34;</span><span class=p>,</span>
+                    <span class=nx>defaultFieldValues</span><span class=o>:</span> <span class=nx>defaultValues</span>
+                <span class=p>}</span>
+            <span class=p>});</span>
+        <span class=p>}</span> <span class=k>catch</span> <span class=p>(</span><span class=nx>error</span><span class=p>)</span> <span class=p>{</span>
+            <span class=nx>console</span><span class=p>.</span><span class=nx>error</span><span class=p>(</span><span class=nx>error</span><span class=p>);</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><p><strong>customRelatedList.js-meta.xml</strong></p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-xml data-lang=xml><span class=cp>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class=nt>&lt;LightningComponentBundle</span> <span class=na>xmlns=</span><span class=s>&#34;http://soap.sforce.com/2006/04/metadata&#34;</span><span class=nt>&gt;</span>
+    <span class=nt>&lt;apiVersion&gt;</span>56.0<span class=nt>&lt;/apiVersion&gt;</span>
+    <span class=nt>&lt;isExposed&gt;</span>true<span class=nt>&lt;/isExposed&gt;</span>
+    <span class=nt>&lt;masterLabel&gt;</span>Custom Related List<span class=nt>&lt;/masterLabel&gt;</span>
+    <span class=nt>&lt;description&gt;</span>The component displays a datatable that supports Rich text formatting and scrollable columns for values with multiple lines.<span class=nt>&lt;/description&gt;</span>
+    <span class=nt>&lt;targets&gt;</span>
+        <span class=nt>&lt;target&gt;</span>lightning__RecordPage<span class=nt>&lt;/target&gt;</span>
+    <span class=nt>&lt;/targets&gt;</span>
+    <span class=nt>&lt;targetConfigs&gt;</span>
+        <span class=nt>&lt;targetConfig</span> <span class=na>targets=</span><span class=s>&#34;lightning__RecordPage&#34;</span><span class=nt>&gt;</span>
+            <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;iconName&#34;</span> <span class=na>type=</span><span class=s>&#34;String&#34;</span> <span class=na>label=</span><span class=s>&#34;Related list icon name&#34;</span> <span class=na>default=</span><span class=s>&#34;standard:case&#34;</span> <span class=na>description=</span><span class=s>&#34;Refer to SLDS icons.&#34;</span> <span class=na>required=</span><span class=s>&#34;true&#34;</span><span class=nt>/&gt;</span>
+            <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;pNoteObjectApiName&#34;</span> <span class=na>type=</span><span class=s>&#34;String&#34;</span> <span class=na>label=</span><span class=s>&#34;Child Object API name&#34;</span> <span class=na>default=</span><span class=s>&#34;Case&#34;</span> <span class=na>description=</span><span class=s>&#34;Enter the API name of the child object.&#34;</span> <span class=na>required=</span><span class=s>&#34;true&#34;</span><span class=nt>/&gt;</span>
+            <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;pRelatedListTitle&#34;</span> <span class=na>type=</span><span class=s>&#34;String&#34;</span> <span class=na>label=</span><span class=s>&#34;Related List Title&#34;</span> <span class=na>default=</span><span class=s>&#34;Related Cases&#34;</span> <span class=na>description=</span><span class=s>&#34;The title of the related list to be displayed.&#34;</span> <span class=na>required=</span><span class=s>&#34;true&#34;</span><span class=nt>/&gt;</span>
+            <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;pNotesRelatedList&#34;</span> <span class=na>type=</span><span class=s>&#34;String&#34;</span> <span class=na>label=</span><span class=s>&#34;Related List ID&#34;</span> <span class=na>default=</span><span class=s>&#34;Cases&#34;</span> <span class=na>required=</span><span class=s>&#34;true&#34;</span> <span class=na>description=</span><span class=s>&#34;Child Relationship Name (Append &#39;__r&#39; if needed).&#34;</span> <span class=nt>/&gt;</span>
+            <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;pNotesFields&#34;</span> <span class=na>type=</span><span class=s>&#34;String&#34;</span> <span class=na>label=</span><span class=s>&#34;List Columns&#34;</span> <span class=na>default=</span><span class=s>&#34;CaseNumber, CreatedDate, CreatedBy.Alias, IsClosed&#34;</span> <span class=na>description=</span><span class=s>&#34;Provide API names of the fields in the child object (comma separated).&#34;</span> <span class=na>placeholder=</span><span class=s>&#34;Field1, Field2__c, Lookup.Name, etc.&#34;</span> <span class=na>required=</span><span class=s>&#34;true&#34;</span> <span class=nt>/&gt;</span>
+            <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;showNewButton&#34;</span> <span class=na>type=</span><span class=s>&#34;Boolean&#34;</span> <span class=na>label=</span><span class=s>&#34;Allow users to create records&#34;</span> <span class=na>description=</span><span class=s>&#34;Enable to show the New button on the related list&#34;</span> <span class=na>default=</span><span class=s>&#34;true&#34;</span> <span class=nt>/&gt;</span>
+            <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;pDefaultSortedBy&#34;</span> <span class=na>type=</span><span class=s>&#34;String&#34;</span> <span class=na>label=</span><span class=s>&#34;Sorted By (Default)&#34;</span> <span class=na>default=</span><span class=s>&#34;CreatedDate&#34;</span> <span class=na>description=</span><span class=s>&#34;Provide the API name of the field in the child object, to sort the list by default.&#34;</span> <span class=na>required=</span><span class=s>&#34;true&#34;</span> <span class=nt>/&gt;</span>
+            <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;pDefaultSortDirection&#34;</span> <span class=na>type=</span><span class=s>&#34;String&#34;</span> <span class=na>label=</span><span class=s>&#34;Default sort direction&#34;</span> <span class=na>default=</span><span class=s>&#34;desc&#34;</span> <span class=na>datasource=</span><span class=s>&#34;asc,desc&#34;</span> <span class=na>required=</span><span class=s>&#34;true&#34;</span> <span class=nt>/&gt;</span>
+            <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;pFilterText&#34;</span> <span class=na>type=</span><span class=s>&#34;String&#34;</span> <span class=na>label=</span><span class=s>&#34;Filter Criteria (GraphQL syntax)&#34;</span> <span class=na>description=</span><span class=s>&#34;The filter to apply to the related list records, in GraphQL syntax.&#34;</span> <span class=nt>/&gt;</span>
+            <span class=nt>&lt;property</span> <span class=na>name=</span><span class=s>&#34;pPageSize&#34;</span> <span class=na>type=</span><span class=s>&#34;Integer&#34;</span> <span class=na>label=</span><span class=s>&#34;Page Size&#34;</span> <span class=na>description=</span><span class=s>&#34;Number of records to load in each request.&#34;</span> <span class=na>default=</span><span class=s>&#34;50&#34;</span> <span class=na>required=</span><span class=s>&#34;true&#34;</span> <span class=na>max=</span><span class=s>&#34;200&#34;</span> <span class=nt>/&gt;</span>
+        <span class=nt>&lt;/targetConfig&gt;</span>
+    <span class=nt>&lt;/targetConfigs&gt;</span>
+<span class=nt>&lt;/LightningComponentBundle&gt;</span>
+</code></pre></div><p><strong>customRelatedList.svg</strong></p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-xml data-lang=xml><span class=cp>&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span><span class=c>&lt;!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools --&gt;</span>
+<span class=nt>&lt;svg</span> <span class=na>width=</span><span class=s>&#34;800px&#34;</span> <span class=na>height=</span><span class=s>&#34;800px&#34;</span> <span class=na>viewBox=</span><span class=s>&#34;0 0 24 24&#34;</span> <span class=na>xmlns=</span><span class=s>&#34;http://www.w3.org/2000/svg&#34;</span> <span class=na>fill=</span><span class=s>&#34;none&#34;</span> <span class=na>stroke=</span><span class=s>&#34;#000000&#34;</span> <span class=na>stroke-width=</span><span class=s>&#34;1&#34;</span> <span class=na>stroke-linecap=</span><span class=s>&#34;round&#34;</span> <span class=na>stroke-linejoin=</span><span class=s>&#34;miter&#34;</span><span class=nt>&gt;&lt;rect</span> <span class=na>x=</span><span class=s>&#34;3&#34;</span> <span class=na>y=</span><span class=s>&#34;3&#34;</span> <span class=na>width=</span><span class=s>&#34;18&#34;</span> <span class=na>height=</span><span class=s>&#34;18&#34;</span> <span class=na>rx=</span><span class=s>&#34;0&#34;</span> <span class=na>fill=</span><span class=s>&#34;#059cf7&#34;</span> <span class=na>opacity=</span><span class=s>&#34;0.1&#34;</span><span class=nt>&gt;&lt;/rect&gt;&lt;rect</span> <span class=na>x=</span><span class=s>&#34;3&#34;</span> <span class=na>y=</span><span class=s>&#34;3&#34;</span> <span class=na>width=</span><span class=s>&#34;18&#34;</span> <span class=na>height=</span><span class=s>&#34;18&#34;</span> <span class=na>rx=</span><span class=s>&#34;0&#34;</span><span class=nt>&gt;&lt;/rect&gt;&lt;line</span> <span class=na>x1=</span><span class=s>&#34;21&#34;</span> <span class=na>y1=</span><span class=s>&#34;9&#34;</span> <span class=na>x2=</span><span class=s>&#34;3&#34;</span> <span class=na>y2=</span><span class=s>&#34;9&#34;</span><span class=nt>&gt;&lt;/line&gt;&lt;line</span> <span class=na>x1=</span><span class=s>&#34;21&#34;</span> <span class=na>y1=</span><span class=s>&#34;15&#34;</span> <span class=na>x2=</span><span class=s>&#34;3&#34;</span> <span class=na>y2=</span><span class=s>&#34;15&#34;</span><span class=nt>&gt;&lt;/line&gt;&lt;/svg&gt;</span>
+</code></pre></div><h3 id=add-the-custom-related-list-component-to-the-record-page class="relative group">Add the custom related list component to the record page </h3>
+<p>Inside the lightning app builder page, search for the “Custom Related List" component</p>
+<p>
+<figure>
+<img class="my-0 rounded-md" src=Custom%20Related%20List%20View%20using%20uiRelatedListApi%20me%20b92edde661d747f4a723cf2ee4bd33fc/Untitled.png alt=Untitled>
+</figure>
+</p>
+<p>Drag the component into the canvas and modify the values of the design attributes as applicable.</p>
+<p>
+<figure>
+<img class="my-0 rounded-md" src=Custom%20Related%20List%20View%20using%20uiRelatedListApi%20me%20b92edde661d747f4a723cf2ee4bd33fc/Untitled%201.png alt=Untitled>
+</figure>
+</p>
+<p><strong>Save</strong> the record page. That’s it, we now have a reusable custom related list view component that can display complete data of the long text fields and also, in rich-text format.</p>
+<h2 id=useful-resources class="relative group">Useful Resources </h2>
+<ul>
+<li><a href=https://developer.salesforce.com/docs/platform/lwc/guide/reference-lightning-ui-api-related-list.html>lightning/uiRelatedListApi | Lightning Web Components Developer Guide</a></li>
+<li><a href=https://developer.salesforce.com/docs/component-library/bundle/lightning-datatable/documentation>lightning-datatable - Salesforce Lightning Component Library</a></li>
+<li><a href=https://gist.github.com/loktevich/044d9411985c03a314765dbe05328eb3>LWC rich text column type for lightning-datatable</a></li>
+</ul>
+<p>I hope this post is helpful! See ya!</p>
+</div>
+</section>
+<footer class="pt-8 max-w-prose">
+<br>
+<div class=flex>
+<img id=profile-img class="w-24 h-24 !mt-0 !mb-0 ltr:mr-4 rtl:ml-4 rounded-full" width=96 height=96 alt=Author src=https://harishk501.github.io/img/me-1_hu368a1b8958e2c7a4f2b7317418306ad2_109031_192x192_fill_q75_box_smart1.jpeg>
+<div class=place-self-center>
+<div class="text-[0.6rem] leading-3 text-neutral-500 dark:text-neutral-400 uppercase">
+Author
+</div>
+<div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+Harish K
+</div>
+<div class="text-sm text-neutral-700 dark:text-neutral-400">Eat. Code. Sleep. Repeat.</div>
+<div class="text-2xl sm:text-lg">
+<div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+<a class="home-icons hover-underline-animation px-1 hover:text-primary-700 dark:hover:text-primary-400" href=mailto:harishcse18501@gmail.com target=_blank aria-label=Email rel="me noopener noreferrer">
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+</span>
+</a>
+<a class="home-icons hover-underline-animation px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://github.com/harishk501 target=_blank aria-label=Github rel="me noopener noreferrer">
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg>
+</span>
+</a>
+<a class="home-icons hover-underline-animation px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://linkedin.com/in/harishk501 target=_blank aria-label=Linkedin rel="me noopener noreferrer">
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+</span>
+</a>
+<a class="home-icons hover-underline-animation px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://t.me/harishk501 target=_blank aria-label=Telegram rel="me noopener noreferrer">
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30"><path fill="currentcolor" d="M25.154297 3.984375C24.829241 3.998716 24.526384 4.0933979 24.259766 4.2011719c-.249751999999997.1004638-1.204.5097387-2.707032 1.1542969C20.048394 6.0005882 18.056479 6.855779 15.931641 7.7695312 11.681964 9.5970359 6.9042108 11.654169 4.4570312 12.707031 4.3650097 12.746607 4.0439208 12.849183 3.703125 13.115234 3.3623292 13.381286 3 13.932585 3 14.546875c0 .495340000000001.2360676.987444.5332031 1.28125S4.144747 16.267067 4.4140625 16.376953C5.3912284 16.775666 8.4218473 18.015862 8.9941406 18.25 9.195546 18.866983 10.29249 22.222526 10.546875 23.044922 10.714568 23.587626 10.874198 23.927519 11.082031 24.197266 11.185948 24.332139 11.306743 24.45034 11.453125 24.542969 11.511635 24.579989 11.575789 24.608506 11.640625 24.634766L11.644531 24.636719C11.659471 24.642719 11.67235 24.652903 11.6875 24.658203 11.716082 24.668202 11.735202 24.669403 11.773438 24.677734 11.925762 24.726927 12.079549 24.757812 12.216797 24.757812 12.80196 24.757814 13.160156 24.435547 13.160156 24.435547L13.181641 24.419922l3.009765-2.603516 3.650391 3.453125C19.893193 25.342209 20.372542 26 21.429688 26 22.057386 26 22.555319 25.685026 22.875 25.349609S23.393848 24.661807 23.478516 24.21875V24.216797C23.557706 23.798129 26.921875 6.5273437 26.921875 6.5273438L26.916016 6.5507812C27.014496 6.1012683 27.040303 5.6826405 26.931641 5.2695312 26.822973 4.8564222 26.536648 4.4608905 26.181641 4.2480469 25.826669 4.0352506 25.479353 3.9700339 25.154297 3.984375zm-.1875 2.0898438C24.961997 6.1034038 24.970391 6.0887279 24.962891 6.1230469L24.960938 6.1347656 24.958984 6.1464844S21.636486 23.196371 21.513672 23.845703C21.522658 23.796665 21.481573 23.894167 21.439453 23.953125 21.379901 23.91208 21.257812 23.859375 21.257812 23.859375L21.238281 23.837891l-4.986328-4.716797-3.525391 3.046875 1.048829-4.199219s6.556171-6.786641 6.951171-7.181641C21.044563 10.471109 21.111328 10.360953 21.111328 10.251953 21.111328 10.105953 21.035234 10 20.865234 10 20.712234 10 20.506484 10.14875 20.396484 10.21875 18.963383 11.132295 12.671823 14.799141 9.8515625 16.439453 9.4033769 16.256034 6.2896636 14.981472 5.234375 14.550781 5.242365 14.547281 5.2397349 14.548522 5.2480469 14.544922 7.6958673 13.491784 12.47163 11.434667 16.720703 9.6074219c2.124537-.9136227 4.117966-1.7694632 5.621094-2.4140625 1.479984-.6346745 2.508328-1.07147 2.625-1.1191406z"/></svg>
+</span>
+</a>
+<a class="home-icons hover-underline-animation px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://twitter.com/harishk501 target=_blank aria-label=X-Twitter rel="me noopener noreferrer">
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48"><path fill="currentcolor" d="M2.3671875 3 9.4628906 13.140625 2.7402344 21h2.640625l5.2636716-6.169922L14.960938 21h6.910156L14.449219 10.375 20.740234 3H18.140625L13.271484 8.6875 9.2988281 3H2.3671875zM6.2070312 5H8.2558594L18.033203 19h-2.03125L6.2070312 5z"/></svg>
+</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<div><br>
+<div class=pt-8>
+<hr class=dashed-hr>
+<div class="flex justify-between pt-3">
+<span>
+<a class="flex group" href=https://harishk501.github.io/posts/salesforce/minimal-list-view/>
+<span class="mr-3 ltr:inline rtl:hidden text-neutral-700 dark:text-neutral group-hover:text-primary-600 dark:group-hover:text-primary-400">&larr;</span>
+<span class="ml-3 ltr:hidden rtl:inline text-neutral-700 dark:text-neutral group-hover:text-primary-600 dark:group-hover:text-primary-400">&rarr;</span>
+<span class="flex flex-col">
+<span class="mt-[0.1rem] leading-6"><span class=hover-underline-animation>Minimal List View using Aura Components in Salesforce</span></span>
+<span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+<time datetime="2022-04-03 17:42:54 +0530 IST">Apr 03, 2022</time>
+</span>
+</span>
+</a>
+</span>
+<span style=width:100px> </span>
+<span>
+</span>
+</div>
+</div>
+</div><br>
+</article>
+<script>var highlightOnScroll=!0,$navigationLinks=$('#TableOfContents a'),$sections=$($(".group").get().reverse()),sectionIdTonavigationLink={};$sections.each(function(){var a=$(this).attr('id');sectionIdTonavigationLink[a]=$('#TableOfContents a[href=\\#'+a+']')}),$navigationLinks.on("click",function(a){highlightOnScroll=!1,$navigationLinks.removeClass('active-toc-item'),$(this).addClass('active-toc-item'),setTimeout(function(){highlightOnScroll=!0},1e3)});function throttle(b,c){var a,d;return function(){var e=(new Date).getTime();a&&e<a+c?(clearTimeout(d),d=setTimeout(function(){a=e,b.call()},c-(e-a))):(a=e,b.call())}}function highlightNavigation(){if(!highlightOnScroll)return;var a=$(window).scrollTop();$sections.each(function(){var b=$(this),d=b.offset().top-60,e,c;if(a>=200){if(a>=d)return e=b.attr('id'),c=sectionIdTonavigationLink[e],c.hasClass('active-toc-item')||($navigationLinks.removeClass('active-toc-item'),c.addClass('active-toc-item')),!1}else $navigationLinks.removeClass('active-toc-item')})}$(window).scroll(throttle(highlightNavigation,100))</script>
+<div class="absolute top-[110vh] ltr:right-0 rtl:left-0 w-12 pointer-events-none bottom-[-5.5rem]">
+<a id=scrollToTopButton href=#the-top class="w-12 h-12 sticky pointer-events-auto top-[calc(100vh-5rem)] bg-neutral-100 dark:bg-neutral-800 backdrop-blur rounded-full text-xl flex items-center justify-center text-neutral-500 dark:text-neutral hover:text-primary-600 dark:hover:text-primary-400" aria-label="Scroll to top" title="Scroll to top">
+<i class="fa-solid fa-chevron-up fa-sm"></i>
+</a>
+</div>
+</main>
+<div id=search-wrapper class="fixed inset-0 z-50 flex flex-col p-4 sm:p-6 md:p-[10vh] lg:p-[12vh] w-screen h-screen cursor-default bg-neutral-500/50 backdrop-blur-sm dark:bg-neutral-900/50 invisible" data-url=https://harishk501.github.io/>
+<div id=search-modal class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg border-neutral-200 top-20 bg-neutral dark:bg-neutral-800 dark:border-neutral-700">
+<header class="relative z-10 flex items-center justify-between flex-none px-2">
+<form class="flex items-center flex-auto min-w-0">
+<div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+<span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M505 442.7 405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9.0 208 0S0 93.1.0 208s93.1 208 208 208c48.3.0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9.0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7.0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7.0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+</div>
+<input type=search id=search-query class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-transparent focus:outline-2" placeholder=Search tabindex=0>
+</form>
+<button id=close-search-button class="flex items-center justify-center w-8 h-8 text-neutral-700 dark:text-neutral hover:text-primary-600 dark:hover:text-primary-400" title="Close (Esc)">
+<span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentcolor" d="M310.6 361.4c12.5 12.5 12.5 32.75.0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3 54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75.0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75.0-45.25s32.75-12.5 45.25.0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25.0s12.5 32.75.0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+</button>
+</header>
+<section class="flex-auto px-2 overflow-auto">
+<ul id=search-results>
+</ul>
+</section>
+</div>
+</div>
+<br><br>
+<footer class=py-10>
+<div>
+<div>
+<p style=text-align:center class="text-sm text-neutral-400 dark:text-neutral-400">
+&copy;
+2024
+Harish K
+</p>
+</div>
+</div>
+</footer>
+<script>document.onreadystatechange=function(){document.readyState!=="complete"?(document.querySelector("main").style.visibility="hidden",document.querySelector("#spinner").style.display="block",document.querySelector("#spinner").style.visibility="visible"):(document.querySelector("#spinner").style.display="none",document.querySelector("main").style.visibility="visible")}</script>
+<script data-goatcounter=https://harry501.goatcounter.com/count async src=//gc.zgo.at/count.js></script>
+</body>
+</html>
