@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Londrina+Outline&family=Londrina+Shadow&display=swap" rel=stylesheet>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel=stylesheet>
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel=stylesheet>
-<link type=text/css rel=stylesheet href=https://harishk501.github.io/css/main.bundle.min.3e52f1849d378764d283751631a13bcddd9868f6c9a346389f8a378e0df1d84b95394b8c3c4d8f1067d51028a226390e096b7d9965e42b3c5a780fb56f255d20.css integrity="sha512-PlLxhJ03h2TSg3UWMaE7zd2YaPbJo0Y4n4o3jg3x2EuVOUuMPE2PEGfVECiiJjkOCWt9mWXkKzxaeA+1byVdIA==">
+<link type=text/css rel=stylesheet href=https://harishk501.github.io/css/main.bundle.min.36a28c0f812aa060637ae2649210ad3978dbd485780be2120986b1cd4283e0fb6e7814fecee3b71ebcd68d7d39a326e6011d5bb68fe38a4bf0ea852ebf3505ea.css integrity="sha512-NqKMD4EqoGBjeuJkkhCtOXjb1IV4C+ISCYaxzUKD4PtueBT+zuO3HrzWjX05oybmAR1bto/jikvw6oUuvzUF6g==">
 <script type=text/javascript src=https://harishk501.github.io/js/appearance.min.4df8309499991be53c71b2b39ba0f5d5e77ea7d411d0710ce48c24218e7cc24ded28f19e85838fdc56db2306195cb001f049f577be0cf0ffb2dd6e2037ede1b9.js integrity="sha512-TfgwlJmZG+U8cbKzm6D11ed+p9QR0HEM5IwkIY58wk3tKPGehYOP3FbbIwYZXLAB8En1d74M8P+y3W4gN+3huQ=="></script>
 <script defer type=text/javascript id=script-bundle src=https://harishk501.github.io/js/main.bundle.min.5fe0d7b1012b540d1b8e91e697e67f43643af7907f42cbf0230baecfb8c1daaddf869f36377f4f8aba4d0a756076d72f72c34244147dd9d0d750f7819b42abfe.js integrity="sha512-X+DXsQErVA0bjpHml+Z/Q2Q695B/QsvwIwuuz7jB2q3fhp82N39PirpNCnVgdtcvcsNCRBR92dDXUPeBm0Kr/g==" data-copy=Copy data-copied=Copied></script>
 <link rel=apple-touch-icon sizes=180x180 href=https://harishk501.github.io/apple-touch-icon.png>
@@ -166,7 +166,7 @@
 </article>
 </section>
 </main>
-<div id=search-wrapper class="fixed inset-0 z-50 flex flex-col p-4 sm:p-6 md:p-[10vh] lg:p-[12vh] w-screen h-screen cursor-default bg-neutral-500/50 backdrop-blur-sm dark:bg-neutral-900/50 invisible" data-url=https://harishk501.github.io/>
+<div id=search-wrapper class="fixed inset-0 z-50 flex flex-col p-4 sm:p-6 md:p-[10vh] lg:p-[12vh] w-screen h-screen bg-neutral-500/50 backdrop-blur-sm dark:bg-neutral-900/50 invisible" data-url=https://harishk501.github.io/>
 <div id=search-modal class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg border-neutral-200 top-20 bg-neutral dark:bg-neutral-800 dark:border-neutral-700">
 <header class="relative z-10 flex items-center justify-between flex-none px-2">
 <form class="flex items-center flex-auto min-w-0">
@@ -187,7 +187,14 @@
 </section>
 </div>
 </div>
-<br><br>
+<div id=harry-img-modal class="fixed inset-0 z-50 flex flex-col p-4 sm:p-6 md:p-[10vh] lg:p-[12vh] w-screen h-screen bg-neutral-500/50 backdrop-blur-sm dark:bg-neutral-900/50 invisible" data-url=https://harishk501.github.io/>
+<div class="w-full max-w-5xl min-h-0 mx-auto" style=position:relative>
+<span id=harry-img-modal-close>&#215;</span>
+</div>
+<div id=harry-img-modal-container class="flex flex-col w-full max-w-5xl min-h-0 mx-auto border rounded-md shadow-lg border-neutral-200 bg-neutral dark:bg-neutral-800 dark:border-neutral-700">
+<img id=harry-modal-img>
+</div>
+</div><br><br>
 <footer class=py-10>
 <div>
 <div>
@@ -198,7 +205,8 @@ Harish K
 </p>
 </div>
 </div>
-<script type=text/javascript src=https://harishk501.github.io/js/harry-cursor.min.8a81ba85b470a8eb2a269f59fd8c75f8c0522d9130000e33b4893abed017bf0098d901f5b34254cb724052903b1548c6bf413abdbd2819c2f2efaeb823168da0.js></script>
+<script type=text/javascript src=https://harishk501.github.io/js/harry-cursor.min.c22a4c3af6722c7cc6fd7d949e53cf5bb29d4913b56357138c3fab63424bb6b644661c38f67299348fc5f4a9e54b4f467efa5cb2e6fe71d2100f6ae91709d3d2.js></script>
+<script type=text/javascript src=https://harishk501.github.io/js/harry-img-modal.min.9d60844ad97bf3ecfb8e3f377ab81638bde21f090b720598d11a227649c856a985e50624db13dc41bf73902888ed8bd2359f3d4394df25aa44b3a6db7f32645a.js></script>
 </footer>
 <script>document.onreadystatechange=function(){document.readyState!=="complete"?(document.querySelector("main").style.visibility="hidden",document.querySelector("#spinner").style.display="block",document.querySelector("#spinner").style.visibility="visible"):(document.querySelector("#spinner").style.display="none",document.querySelector("main").style.visibility="visible")}</script>
 </body>
